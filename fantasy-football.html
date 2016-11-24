@@ -1,0 +1,1694 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Learning With Data Atom">
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+
+<meta name="author" content="Tyler Folkman" />
+<meta name="description" content="Fantasy Football¶So - this is my first year participating in a fantasy football league. I enjoy football, but I typically only keep up with a few teams, so drafting an actual team was a bit daunting. So, like most things, I relied on data to help me out. I spent some time researching strategy, looking at projections, and even simulating some drafts. Draft day came and I felt pretty good about my team...but now I am currently 0-3 for the season. Ha." />
+<meta name="keywords" content="nfl">
+<meta property="og:site_name" content="Learning With Data"/>
+<meta property="og:title" content="Fantasy Football"/>
+<meta property="og:description" content="Fantasy Football¶So - this is my first year participating in a fantasy football league. I enjoy football, but I typically only keep up with a few teams, so drafting an actual team was a bit daunting. So, like most things, I relied on data to help me out. I spent some time researching strategy, looking at projections, and even simulating some drafts. Draft day came and I felt pretty good about my team...but now I am currently 0-3 for the season. Ha."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/fantasy-football.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-09-30 00:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/tyler-folkman.html">
+<meta property="article:section" content="data-exploration"/>
+<meta property="article:tag" content="nfl"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Learning With Data &ndash; Fantasy Football</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="/images/profile.jpg" alt="Tyler Folkman" title="Tyler Folkman">
+      </a>
+      <h1><a href="http://localhost:8000">Tyler Folkman</a></h1>
+
+<p>Data Scientist @Ancestry</p>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/tylerfolkman" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/tfolkman" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:learningwithdata@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/tyler_folkman" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="http://localhost:8000/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="fantasy-football">Fantasy Football</h1>
+    <p>
+          Posted on Wed 30 September 2015 in <a href="http://localhost:8000/category/data-exploration.html">data-exploration</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/.ansibold{font-weight:700}.ansiblack{}.ansired{color:#8b0000}.ansigreen{6400}.ansiyellow{color:#c4a000}.ansiblue{8b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-f}.ansibgpurple{background-color:#ff00ff}.ansibgcyan{background-ff}.ansibggray{background-color:gray}div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;border-radius:2px;box-sizing:border-box;-moz-box-sizing:border-box;border-width:thin;border-style:solid;width:100%;padding:5px;margin:0;outline:0}div.cell.selected{border-color:#ababab}@media print{div.cell.selected{border-color:transparent}}.edit_mode div.cell.selected{border-color:green}.prompt{min-width:14ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}@-moz-document url-prefix(){div.inner_cell{overflow-x:hidden}}div.input_area{border:1px solid #cfcfcf;border-radius:2px;background:#f7f7f7;line-height:1.21429em}div.prompt:empty{padding-top:0;padding-bottom:0}div.unrecognized_cell{padding:5px 5px 5px 0;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.unrecognized_cell .inner_cell{border-radius:2px;padding:5px;font-weight:700;color:red;border:1px solid #cfcfcf;background:#eaeaea}div.unrecognized_cell .inner_cell a,div.unrecognized_cell .inner_cell a:hover{color:inherit;text-decoration:none}@media (max-width:540px){.prompt{text-align:left}div.unrecognized_cell>div.prompt{display:none}}div.code_cell{}div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.input{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:navy;border-top:1px solid transparent}div.input_area>div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}div.input_area>div.highlight>pre{margin:0;border:none;padding:0;background-color:transparent}.CodeMirror{line-height:1.21429em;font-size:14px;height:auto;background:0 0}.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}.CodeMirror-lines{padding:.4em}.CodeMirror-linenumber{padding:0 8px 0 4px}.CodeMirror-gutters{border-bottom-left-radius:2px;border-top-left-radius:2px}.CodeMirror pre{padding:0;border:0;border-radius:0}.highlight-base,.highlight-variable{}.highlight-variable-2{color:#1a1a1a}.highlight-variable-3{color:#333}.highlight-string{color:#BA2121}.highlight-comment{color:#408080;font-style:italic}.highlight-number{80}.highlight-atom{color:#88F}.highlight-keyword{color:green;font-weight:700}.highlight-builtin{color:green}.highlight-error{color:red}.highlight-operator{color:#A2F;font-weight:700}.highlight-meta{color:#A2F}.highlight-def{f}.highlight-string-2{color:#f50}.highlight-qualifier{color:#555}.highlight-bracket{color:#997}.highlight-tag{color:#170}.highlight-attribute{c}.highlight-header{f}.highlight-quote{90}.highlight-link{c}.cm-s-ipython span.cm-keyword{color:green;font-weight:700}.cm-s-ipython span.cm-atom{color:#88F}.cm-s-ipython span.cm-number{80}.cm-s-ipython span.cm-def{f}.cm-s-ipython span.cm-variable{}.cm-s-ipython span.cm-operator{color:#A2F;font-weight:700}.cm-s-ipython span.cm-variable-2{color:#1a1a1a}.cm-s-ipython span.cm-variable-3{color:#333}.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}.cm-s-ipython span.cm-string{color:#BA2121}.cm-s-ipython span.cm-string-2{color:#f50}.cm-s-ipython span.cm-meta{color:#A2F}.cm-s-ipython span.cm-qualifier{color:#555}.cm-s-ipython span.cm-builtin{color:green}.cm-s-ipython span.cm-bracket{color:#997}.cm-s-ipython span.cm-tag{color:#170}.cm-s-ipython span.cm-attribute{c}.cm-s-ipython span.cm-header{f}.cm-s-ipython span.cm-quote{90}.cm-s-ipython span.cm-link{c}.cm-s-ipython span.cm-error{color:red}.cm-s-ipython span.cm-tab{background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=')right no-repeat}div.output_wrapper{display:-webkit-box;-webkit-box-align:stretch;display:-moz-box;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;z-index:1}div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:2px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,.8);box-shadow:inset 0 2px 8px rgba(0,0,0,.8);display:block}div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:2px}div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,.5)}div.output_prompt{color:#8b0000}div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left!important}div.output_area div.output_area img,div.output_area svg{max-width:100%;height:auto}div.output_area img.unconfined,div.output_area svg.unconfined{max-width:none}.output{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}@media (max-width:540px){div.output_area{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;background-color:transparent;border-radius:0}div.output_subarea{overflow-x:auto;padding:.4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1;max-width:calc(100% - 14ex)}div.output_text{text-align:left;line-height:1.21429em}div.output_stderr{background:#fdd}div.output_latex{text-align:left}div.output_javascript:empty{padding:0}.js-error{color:#8b0000}div.raw_input_container{font-family:monospace;padding-top:5px}span.raw_input_prompt{}input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}input.raw_input:focus{box-shadow:none}p.p-space{margin-bottom:10px}div.output_unrecognized{padding:5px;font-weight:700;color:red}div.output_unrecognized a,div.output_unrecognized a:hover{color:inherit;text-decoration:none}.rendered_html{}.rendered_html :link,.rendered_html :visited,.rendered_html h1:first-child{margin-top:.538em}.rendered_html h2:first-child{margin-top:.636em}.rendered_html h3:first-child{margin-top:.777em}.rendered_html h4:first-child,.rendered_html h5:first-child,.rendered_html h6:first-child{margin-top:1em}.rendered_html *+ol,.rendered_html *+ul{margin-top:1em}.rendered_html *+table{margin-top:1em}.rendered_html *+p{margin-top:1em}.rendered_html *+img{margin-top:1em}div.text_cell{display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.text_cell>div.prompt{display:none}}div.text_cell_render{outline:0;resize:none;width:inherit;border-style:none;padding:.5em .5em .5em .4em;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}a.anchor-link:link{text-decoration:none;padding:0 20px;visibility:hidden}h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible}.text_cell.rendered .input_area{display:none}.text_cell.rendered .text_cell.unrendered .text_cell_render{display:none}.cm-header-1,.cm-header-2,.cm-header-3,.cm-header-4,.cm-header-5,.cm-header-6{font-weight:700;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.cm-header-1{font-size:185.7%}.cm-header-2{font-size:157.1%}.cm-header-3{font-size:128.6%}.cm-header-4{font-size:110%}.cm-header-5,.cm-header-6{font-size:100%;font-style:italic}</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Fantasy-Football">Fantasy Football<a class="anchor-link" href="#Fantasy-Football">¶</a></h1><p>So - this is my first year participating in a fantasy football league. I enjoy football, but I typically only keep up with a few teams, so drafting an actual team was a bit daunting. So, like most things, I relied on data to help me out. I spent some time researching strategy, looking at projections, and even simulating some drafts. Draft day came and I felt pretty good about my team...but now I am currently 0-3 for the season. Ha.</p>
+<p>I started to get a bit curious about why I was doing so poorly. Typically my "projected" points were pretty good each week, but my team just never seemed to deliver.</p>
+<p>Thus, here is my first post looking at the biggest out performers and the biggest misses relative to ESPN projections. All data are from ESPN. So - lets get to it!</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas.io.sql</span> <span class="kn">as</span> <span class="nn">psql</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span> <span class="c1">#now division always returns a floating point number</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">db</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">"dbname='fantasyfootball' host='localhost'"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_combined_df</span><span class="p">():</span>
+    <span class="n">actual_points</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    select name, team, position, sum(total_points) as points_actual </span>
+<span class="s2">    from scoring_leaders_weekly</span>
+<span class="s2">    group by name, team, position;"""</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+    <span class="n">predicted_points</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">        select name, team, position, sum(total_points) as points_predicted</span>
+<span class="s2">        from next_week_projections</span>
+<span class="s2">        group by name, team, position;"""</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">actual_points</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">predicted_points</span><span class="p">,</span> 
+                                      <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'team'</span><span class="p">,</span> <span class="s1">'position'</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">'points_predicted'</span><span class="p">]</span> <span class="o">></span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">combined_df</span><span class="p">[</span><span class="s1">'points_diff'</span><span class="p">]</span> <span class="o">=</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">points_actual</span> <span class="o">-</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">points_predicted</span>
+    <span class="n">combined_df</span><span class="p">[</span><span class="s1">'points_diff_pct'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">combined_df</span><span class="o">.</span><span class="n">points_actual</span> <span class="o">-</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">points_predicted</span><span class="p">)</span> <span class="o">/</span> <span class="n">combined_df</span><span class="o">.</span><span class="n">points_predicted</span>
+    <span class="k">return</span> <span class="n">combined_df</span>
+
+<span class="k">def</span> <span class="nf">get_top_bottom</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'position'</span><span class="p">)</span>
+    <span class="n">top_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bottom_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">group</span><span class="p">:</span>
+        <span class="n">top</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'points_diff'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">top_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">top</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">top</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">tail</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'points_diff'</span><span class="p">)</span>
+        <span class="n">bottom_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tail</span><span class="p">)</span>
+    <span class="n">top_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">top_list</span><span class="p">)</span>
+    <span class="n">bottom_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">bottom_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">top_df</span><span class="p">,</span> <span class="n">bottom_df</span>
+
+<span class="k">def</span> <span class="nf">run_analysis</span><span class="p">():</span>
+    <span class="n">combined_df</span> <span class="o">=</span> <span class="n">get_combined_df</span><span class="p">()</span>
+    <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span> <span class="o">=</span> <span class="n">get_top_bottom</span><span class="p">(</span><span class="n">combined_df</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">combined_df</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="RESULTS">RESULTS<a class="anchor-link" href="#RESULTS">¶</a></h1><p>For the results, I decided to show the top 5 out performers and the top 5 under performers for the cumulative season based on the absolute point difference (not the percentage). First, here are the <strong>out performers</strong>. This is pretty interesting. Travis Benjamin, for example, has in the first 3 weeks produced an extra 33.6 fantasy points relative to expectations. Not too bad.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">combined_df</span><span class="p">,</span> <span class="n">top_1</span><span class="p">,</span> <span class="n">bottom_1</span> <span class="o">=</span> <span class="n">run_analysis</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">top_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>name</th>
+<th>team</th>
+<th>position</th>
+<th>points_actual</th>
+<th>points_predicted</th>
+<th>points_diff</th>
+<th>points_diff_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>384</th>
+<td>Broncos</td>
+<td>Broncos</td>
+<td>D</td>
+<td>55</td>
+<td>36.5</td>
+<td>18.5</td>
+<td>0.506849</td>
+</tr>
+<tr>
+<th>281</th>
+<td>Cardinals</td>
+<td>Cardinals</td>
+<td>D</td>
+<td>48</td>
+<td>31.4</td>
+<td>16.6</td>
+<td>0.528662</td>
+</tr>
+<tr>
+<th>490</th>
+<td>Cowboys</td>
+<td>Cowboys</td>
+<td>D</td>
+<td>23</td>
+<td>15.9</td>
+<td>7.1</td>
+<td>0.446541</td>
+</tr>
+<tr>
+<th>248</th>
+<td>Titans</td>
+<td>Titans</td>
+<td>D</td>
+<td>23</td>
+<td>16.1</td>
+<td>6.9</td>
+<td>0.428571</td>
+</tr>
+<tr>
+<th>25</th>
+<td>Jets</td>
+<td>Jets</td>
+<td>D</td>
+<td>34</td>
+<td>30.7</td>
+<td>3.3</td>
+<td>0.107492</td>
+</tr>
+<tr>
+<th>255</th>
+<td>Stephen Gostkowski</td>
+<td>NE</td>
+<td>K</td>
+<td>40</td>
+<td>26.2</td>
+<td>13.8</td>
+<td>0.526718</td>
+</tr>
+<tr>
+<th>309</th>
+<td>Josh Brown</td>
+<td>NYG</td>
+<td>K</td>
+<td>39</td>
+<td>32.4</td>
+<td>6.6</td>
+<td>0.203704</td>
+</tr>
+<tr>
+<th>247</th>
+<td>Brandon McManus</td>
+<td>Den</td>
+<td>K</td>
+<td>34</td>
+<td>30.0</td>
+<td>4.0</td>
+<td>0.133333</td>
+</tr>
+<tr>
+<th>307</th>
+<td>Steven Hauschka</td>
+<td>Sea</td>
+<td>K</td>
+<td>34</td>
+<td>30.7</td>
+<td>3.3</td>
+<td>0.107492</td>
+</tr>
+<tr>
+<th>496</th>
+<td>Mason Crosby</td>
+<td>GB</td>
+<td>K</td>
+<td>32</td>
+<td>32.1</td>
+<td>-0.1</td>
+<td>-0.003115</td>
+</tr>
+<tr>
+<th>375</th>
+<td>Tom Brady</td>
+<td>NE</td>
+<td>QB</td>
+<td>77</td>
+<td>52.2</td>
+<td>24.8</td>
+<td>0.475096</td>
+</tr>
+<tr>
+<th>204</th>
+<td>Andy Dalton</td>
+<td>Cin</td>
+<td>QB</td>
+<td>69</td>
+<td>51.5</td>
+<td>17.5</td>
+<td>0.339806</td>
+</tr>
+<tr>
+<th>13</th>
+<td>Marcus Mariota</td>
+<td>Ten</td>
+<td>QB</td>
+<td>57</td>
+<td>45.4</td>
+<td>11.6</td>
+<td>0.255507</td>
+</tr>
+<tr>
+<th>488</th>
+<td>Tyrod Taylor</td>
+<td>Buf</td>
+<td>QB</td>
+<td>64</td>
+<td>53.1</td>
+<td>10.9</td>
+<td>0.205273</td>
+</tr>
+<tr>
+<th>107</th>
+<td>Ryan Mallett</td>
+<td>Hou</td>
+<td>QB</td>
+<td>37</td>
+<td>28.6</td>
+<td>8.4</td>
+<td>0.293706</td>
+</tr>
+<tr>
+<th>265</th>
+<td>Karlos Williams</td>
+<td>Buf</td>
+<td>RB</td>
+<td>37</td>
+<td>16.9</td>
+<td>20.1</td>
+<td>1.189349</td>
+</tr>
+<tr>
+<th>295</th>
+<td>Marcel Reece</td>
+<td>Oak</td>
+<td>RB</td>
+<td>20</td>
+<td>3.3</td>
+<td>16.7</td>
+<td>5.060606</td>
+</tr>
+<tr>
+<th>457</th>
+<td>Dion Lewis</td>
+<td>NE</td>
+<td>RB</td>
+<td>40</td>
+<td>24.8</td>
+<td>15.2</td>
+<td>0.612903</td>
+</tr>
+<tr>
+<th>99</th>
+<td>DeAngelo Williams</td>
+<td>Pit</td>
+<td>RB</td>
+<td>38</td>
+<td>24.2</td>
+<td>13.8</td>
+<td>0.570248</td>
+</tr>
+<tr>
+<th>134</th>
+<td>Devonta Freeman</td>
+<td>Atl</td>
+<td>RB</td>
+<td>51</td>
+<td>37.2</td>
+<td>13.8</td>
+<td>0.370968</td>
+</tr>
+<tr>
+<th>171</th>
+<td>Rob Gronkowski</td>
+<td>NE</td>
+<td>TE</td>
+<td>54</td>
+<td>34.0</td>
+<td>20.0</td>
+<td>0.588235</td>
+</tr>
+<tr>
+<th>241</th>
+<td>Anthony Fasano</td>
+<td>Ten</td>
+<td>TE</td>
+<td>17</td>
+<td>0.3</td>
+<td>16.7</td>
+<td>55.666667</td>
+</tr>
+<tr>
+<th>219</th>
+<td>Austin Seferian-Jenkins</td>
+<td>TB</td>
+<td>TE</td>
+<td>23</td>
+<td>9.0</td>
+<td>14.0</td>
+<td>1.555556</td>
+</tr>
+<tr>
+<th>319</th>
+<td>Gary Barnidge</td>
+<td>Cle</td>
+<td>TE</td>
+<td>20</td>
+<td>6.7</td>
+<td>13.3</td>
+<td>1.985075</td>
+</tr>
+<tr>
+<th>272</th>
+<td>Travis Kelce</td>
+<td>KC</td>
+<td>TE</td>
+<td>37</td>
+<td>27.9</td>
+<td>9.1</td>
+<td>0.326165</td>
+</tr>
+<tr>
+<th>258</th>
+<td>Travis Benjamin</td>
+<td>Cle</td>
+<td>WR</td>
+<td>51</td>
+<td>17.4</td>
+<td>33.6</td>
+<td>1.931034</td>
+</tr>
+<tr>
+<th>414</th>
+<td>Larry Fitzgerald</td>
+<td>Ari</td>
+<td>WR</td>
+<td>62</td>
+<td>34.1</td>
+<td>27.9</td>
+<td>0.818182</td>
+</tr>
+<tr>
+<th>174</th>
+<td>Rishard Matthews</td>
+<td>Mia</td>
+<td>WR</td>
+<td>43</td>
+<td>15.9</td>
+<td>27.1</td>
+<td>1.704403</td>
+</tr>
+<tr>
+<th>250</th>
+<td>James Jones</td>
+<td>GB</td>
+<td>WR</td>
+<td>44</td>
+<td>26.2</td>
+<td>17.8</td>
+<td>0.679389</td>
+</tr>
+<tr>
+<th>394</th>
+<td>Julian Edelman</td>
+<td>NE</td>
+<td>WR</td>
+<td>39</td>
+<td>23.8</td>
+<td>15.2</td>
+<td>0.638655</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now here are the <strong>under performers</strong>. These are the people you don't want to be playing...For example, C.J. Anderson comes in at a whopping 42 points under expectation. Who is my running back you ask... Drew Brees takes the cake, though, under performing by 46.2 points on the season. He was injured, though.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">bottom_1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>name</th>
+<th>team</th>
+<th>position</th>
+<th>points_actual</th>
+<th>points_predicted</th>
+<th>points_diff</th>
+<th>points_diff_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>45</th>
+<td>Colts</td>
+<td>Colts</td>
+<td>D</td>
+<td>12</td>
+<td>34.4</td>
+<td>-22.4</td>
+<td>-0.651163</td>
+</tr>
+<tr>
+<th>223</th>
+<td>Dolphins</td>
+<td>Dolphins</td>
+<td>D</td>
+<td>14</td>
+<td>36.3</td>
+<td>-22.3</td>
+<td>-0.614325</td>
+</tr>
+<tr>
+<th>213</th>
+<td>Texans</td>
+<td>Texans</td>
+<td>D</td>
+<td>12</td>
+<td>32.1</td>
+<td>-20.1</td>
+<td>-0.626168</td>
+</tr>
+<tr>
+<th>470</th>
+<td>Lions</td>
+<td>Lions</td>
+<td>D</td>
+<td>14</td>
+<td>27.4</td>
+<td>-13.4</td>
+<td>-0.489051</td>
+</tr>
+<tr>
+<th>141</th>
+<td>Chargers</td>
+<td>Chargers</td>
+<td>D</td>
+<td>10</td>
+<td>23.1</td>
+<td>-13.1</td>
+<td>-0.567100</td>
+</tr>
+<tr>
+<th>366</th>
+<td>Adam Vinatieri</td>
+<td>Ind</td>
+<td>K</td>
+<td>5</td>
+<td>31.5</td>
+<td>-26.5</td>
+<td>-0.841270</td>
+</tr>
+<tr>
+<th>24</th>
+<td>Matt Prater</td>
+<td>Det</td>
+<td>K</td>
+<td>8</td>
+<td>30.9</td>
+<td>-22.9</td>
+<td>-0.741100</td>
+</tr>
+<tr>
+<th>461</th>
+<td>Phil Dawson</td>
+<td>SF</td>
+<td>K</td>
+<td>13</td>
+<td>35.8</td>
+<td>-22.8</td>
+<td>-0.636872</td>
+</tr>
+<tr>
+<th>399</th>
+<td>Andrew Franks</td>
+<td>Mia</td>
+<td>K</td>
+<td>14</td>
+<td>33.6</td>
+<td>-19.6</td>
+<td>-0.583333</td>
+</tr>
+<tr>
+<th>193</th>
+<td>Josh Scobee</td>
+<td>Pit</td>
+<td>K</td>
+<td>16</td>
+<td>32.1</td>
+<td>-16.1</td>
+<td>-0.501558</td>
+</tr>
+<tr>
+<th>21</th>
+<td>Drew Brees</td>
+<td>NO</td>
+<td>QB</td>
+<td>28</td>
+<td>74.2</td>
+<td>-46.2</td>
+<td>-0.622642</td>
+</tr>
+<tr>
+<th>251</th>
+<td>Andrew Luck</td>
+<td>Ind</td>
+<td>QB</td>
+<td>41</td>
+<td>69.5</td>
+<td>-28.5</td>
+<td>-0.410072</td>
+</tr>
+<tr>
+<th>426</th>
+<td>Sam Bradford</td>
+<td>Phi</td>
+<td>QB</td>
+<td>27</td>
+<td>55.5</td>
+<td>-28.5</td>
+<td>-0.513514</td>
+</tr>
+<tr>
+<th>477</th>
+<td>Teddy Bridgewater</td>
+<td>Min</td>
+<td>QB</td>
+<td>28</td>
+<td>55.5</td>
+<td>-27.5</td>
+<td>-0.495495</td>
+</tr>
+<tr>
+<th>428</th>
+<td>Peyton Manning</td>
+<td>Den</td>
+<td>QB</td>
+<td>43</td>
+<td>67.7</td>
+<td>-24.7</td>
+<td>-0.364845</td>
+</tr>
+<tr>
+<th>20</th>
+<td>C.J. Anderson</td>
+<td>Den</td>
+<td>RB</td>
+<td>6</td>
+<td>48.0</td>
+<td>-42.0</td>
+<td>-0.875000</td>
+</tr>
+<tr>
+<th>276</th>
+<td>Marshawn Lynch</td>
+<td>Sea</td>
+<td>RB</td>
+<td>19</td>
+<td>55.0</td>
+<td>-36.0</td>
+<td>-0.654545</td>
+</tr>
+<tr>
+<th>184</th>
+<td>DeMarco Murray</td>
+<td>Phi</td>
+<td>RB</td>
+<td>18</td>
+<td>50.3</td>
+<td>-32.3</td>
+<td>-0.642147</td>
+</tr>
+<tr>
+<th>311</th>
+<td>Jeremy Hill</td>
+<td>Cin</td>
+<td>RB</td>
+<td>20</td>
+<td>50.0</td>
+<td>-30.0</td>
+<td>-0.600000</td>
+</tr>
+<tr>
+<th>416</th>
+<td>Lamar Miller</td>
+<td>Mia</td>
+<td>RB</td>
+<td>15</td>
+<td>42.8</td>
+<td>-27.8</td>
+<td>-0.649533</td>
+</tr>
+<tr>
+<th>16</th>
+<td>Zach Ertz</td>
+<td>Phi</td>
+<td>TE</td>
+<td>8</td>
+<td>22.0</td>
+<td>-14.0</td>
+<td>-0.636364</td>
+</tr>
+<tr>
+<th>386</th>
+<td>Benjamin Watson</td>
+<td>NO</td>
+<td>TE</td>
+<td>4</td>
+<td>15.4</td>
+<td>-11.4</td>
+<td>-0.740260</td>
+</tr>
+<tr>
+<th>226</th>
+<td>Mychal Rivera</td>
+<td>Oak</td>
+<td>TE</td>
+<td>1</td>
+<td>12.0</td>
+<td>-11.0</td>
+<td>-0.916667</td>
+</tr>
+<tr>
+<th>136</th>
+<td>Jeff Cumberland</td>
+<td>NYJ</td>
+<td>TE</td>
+<td>1</td>
+<td>10.8</td>
+<td>-9.8</td>
+<td>-0.907407</td>
+</tr>
+<tr>
+<th>227</th>
+<td>Martellus Bennett</td>
+<td>Chi</td>
+<td>TE</td>
+<td>16</td>
+<td>25.0</td>
+<td>-9.0</td>
+<td>-0.360000</td>
+</tr>
+<tr>
+<th>296</th>
+<td>Alshon Jeffery</td>
+<td>Chi</td>
+<td>WR</td>
+<td>7</td>
+<td>37.4</td>
+<td>-30.4</td>
+<td>-0.812834</td>
+</tr>
+<tr>
+<th>123</th>
+<td>Calvin Johnson</td>
+<td>Det</td>
+<td>WR</td>
+<td>24</td>
+<td>48.7</td>
+<td>-24.7</td>
+<td>-0.507187</td>
+</tr>
+<tr>
+<th>32</th>
+<td>Andre Johnson</td>
+<td>Ind</td>
+<td>WR</td>
+<td>4</td>
+<td>27.9</td>
+<td>-23.9</td>
+<td>-0.856631</td>
+</tr>
+<tr>
+<th>87</th>
+<td>Demaryius Thomas</td>
+<td>Den</td>
+<td>WR</td>
+<td>30</td>
+<td>52.5</td>
+<td>-22.5</td>
+<td>-0.428571</td>
+</tr>
+<tr>
+<th>105</th>
+<td>Mike Evans</td>
+<td>TB</td>
+<td>WR</td>
+<td>10</td>
+<td>32.4</td>
+<td>-22.4</td>
+<td>-0.691358</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, I wanted to take a look at the distribution of point differences by position. The below chart shows that the median player in all positions is under performing, except for TE which is pretty close to zero. There are a few break out WRs and quite a bunch of under performing running backs. The spread is also pretty wide for most of the positions.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">combined_df</span><span class="o">.</span><span class="n">points_diff</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="n">combined_df</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Distribution of Point Differences by Position"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYMAAAEZCAYAAAB1mUk3AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XuclHXd//HXHmCFdaE16bbyUHT4oKYp6q2Wxzz81FI0
+u/U2UjE0LUvtYB5L1LLylFrmKe5bUzqoWGim4Cks+0mokCLsJy3K7LjCErC77LK7c//xvQaGYXYY
+YOa6ZvZ6Px8PHsxcc801n2t2rutzfY9XXSaTQURE0q0+6QBERCR5SgYiIqJkICIiSgYiIoKSgYiI
+oGQgIiJAY9IBSGBm7wD+ALwYLaoHVgM3uvvd0TqXA69mnw+yna8C8939wQKvXQ684u73mNkAsI27
+/2sjYtwL+KS7f9rM9gQucPf/KvX9m8LM6oGfAuMI38X3cl6bAnwG+CuQARqAfwGfcfdXimzzbcB9
+7v7BDXz26cAwd7+lwGsDwAKgH6iLFt/t7tdFr58JvMndv2VmhwN3AP8AzgWmAR3A8e7+5w1+CVUm
++q0ucvcRm7GN3O8vAwwDprn7Nzdxe7m/7TXHQCnHjARKBtWly913zz4xs+2BJ8ys090fcPfLStjG
+h4CXC71Q4P11hdYrYmdg22hbzwEVTQSRbYHDgZHunj8oJgP82N3PyS4ws88CPwT2GmyD7v43oGgi
+iOwHvFTk9YPcfWn0uW8Gfm5mGXe/3t1vy1nvv4Hb3P2q6ET1pLufUcLnD3W5318LMN/MXnL3hzd2
+Q3m/7TXHQInHjKBkUNXc/bXo5HE+8ICZ3Qm85O7XRVc8xwK9wBJgEnA8sAdwtZn1R69vBYwFfg5s
+k31/9BFXmtkehFLIpe7+sJlNIlyxHg2QfQ58GrgCGGVmU4G7ge+4+y5mNhq4GXg/4QT9CHCxu/eb
+2SrgG8BhwNsIV/c35u+rme0PXA2MjPbpUuAZ4FHCVeMLZna8u/8x7635Ce3J6PMws22BW4AdovXu
+cvdroyvbl9y9JSpdvCP6bnYA2oETgX2Ao4FDzayrUOkgl7svMbMvANOB66Ptvhn4MzAB6I6+yxag
+wcy2cPeTzWxy9N3WE/6On3V3j/7W2b/dQ8BXo+/nAEIJaB5wjruvMLM/Af8LHAJsD/zE3S+IvoNP
+Al8gXIG/AZzq7q+b2dHAJcBwoAv4krs/a2bjgKlAU/SdfX+Qfa8zs9sISXc1cA7wW6At2ofHos+/
+I/qub9rA97fCzJ4DDHjYzD4FfC6K+5/RNl8xs/2A66LvIAN8w93XHBtAN+sfA9ljZr3fmLvPjP4u
+x0Wf9Z7otVPcveBF1VClNoPq9yKwS/Q4A2TMbDtCdcOe7r4XMAv4T3e/GXgOON/dfxa9Zwt3f5+7
+X5h9f862X3H3PYBPAHeZ2daDBeHurwNfAX7l7pPzXr4JaHf3XYA9CUnhS9Frw6PX9gM+BnzTzIbn
+vjm6qr6PcHJ7P3AqcA/hZHok0O3uuxdIBOsws0ZgMiEhQKiOecLddyWUBD5hZicWeOt+wMfcfUdC
+9c2Z7v5T4EHg+g0lghwvAttE32MGyLj7tTnbeS9wK6E0c7KZHQicAuzv7uOBa4AHcraX/dtdBFwE
+rHb3Pdx9N+DvQLZKJQM0u/sBwAeAz5nZDmb2/mid/xd9rw8Cl5jZe4CvA0dGn3sm4WJjJOHC40F3
+3xM4CjjAzAqVIIcDj0fv/wpwL+Hi8nvA6QBmNgo4BrhzkO9rzXbNzIADgdlm9qEojoOiff0hkP09
+Xx59l3sCnwQOzvkOMlE1Yu4xkD1mCv7GogsDCEn2s9Fv+Jno81NFyaD6ZQhXbrleB34HzDOzaxik
+jSB676+LbPtWgOgKaCGwL+smi3yDVSsdAXw32lZvtN0jc16fEf0/j3DF2Zz3/r0J9bpzo20sJByQ
+Bxf5zGw8J5rZPDObR/hOtgbOMLNmwonx5mibywknpSML7ONT7r4yJ8bWEva5kOx2u6L3FXpv7vIP
+A+8GfhPF/y2g1cxaWf9v9xFgQs6+TgB2zHl9BqypAvsXIZEeAjzq7n+NXrvR3T9NKKW9FXgy2tY9
+hKvidxGS0ZfNbDrwUcLJs9BvYpm73xdtd1a0TwbcBRwWJcSJwEPRd1/IU9H+vEj423zR3Z8n/J5+
+7O5Lou3fBbw9OnH/BLjZzO4hlAAuGWTbueoY/Dd2EOG7fj767gBeIJTKUkXVRNVvL9Y2KgPURQfn
+gVEVz2HAt83sKXc/r8D7O4tseyB3u4TicYZ1T2LrXMUPoj7vPQ2s+9vqBnD3TLgAXO8kWeikmb+N
+QtZrM8iK6qDzT8iDbXNV3jbr8p6Xai/gj+7eFe3nht5bT2h0vjCKuQ7Yzt07ovd35q17jrvPjNbd
+Etgi5/XuAvuwOvfDzKyJUBVWTygx/XfOa9sDr7v7S1HJ4TBCMrnMzD5QoFTWn/e8jlByWWZm9wEn
+AycRGvgHs6bNoMC2Cv1GGt39djN7iNCOdAQwxcx2LfIZue/Pl/09rGbd72+w9Yc0lQyqmJm9l1B3
+fl3e8l3NbAHQFvW+uAHIHhB9lHYCh9DOgJmNJ9SVziHUK7/PzJqiapejc9bvI9Tf55sJnB1tqwn4
+FPBYiTEQfa5FvZUws52B/YFfbuB9g1194+4rgGdz4hpNOEE9Nth7CmxzQ99lbjXH2whVMtcWeH2w
+OGcBJ5nZNtHzM6JlFFh/JqH6Z3jUw+pWQlXPYDLAU4Q2j+z2P02oinoSODyqmsHMjgDmA1uY2Q+B
+E939J4TvbjlRp4E8bzazD0fvP5pwMs324LqZ0IZQF3U02FgzCSW+raPtn0b4Xf7BzH4D7B6VFs4E
+3kQoyeV+X7l/t7rou3iWwX9jqTvxF6JkUF1GZKsBzOx5QqPghe7+SM46GXd/kVBH+5yZzSWc1D8f
+vf4QcK2ZnZJdv8jnjTWzF4DbCSeAZYQDcTahIfBpQqkku43fAOOiKoTc9odzgLeY2UvR+otYe6Iq
+1ANoHe7+BqFn0neiKoNpwCR3f3UD+5DfBpJvInBItM05wP3RSSR3m/nbyH3+CHCOmV0wyPaz1RzP
+Eapp7nL3Wwtsp+DjqHrlW8BjZvY7QtvNcYPEdSXwJ0I11suEY/eLRfYdd19AqPt+1MzmE66mz4yq
+SD4F/DhafiVwtLt3EToJTIyWPws84O5PF9j8v4Djo2qmCwidDgaiz30RWEpUDTmIQf9u7v448G1C
+NdYCQhL/SFQiPh+4IvrdPglM8dA9N3d7ucdA9rtewuC/sWK/gdSo0xTWIlJOZvYuQqnkve6+akPr
+S3VIrM3AzN4CPE+olxwgNCBlB6KcPUijlYhUMTO7glDddY4SQW1JpGRgZsMI1Rw7EnpFXANc6+5P
+m9ktwMycrpEiIlJhSbUZXEMYDPT36Pn4nHrJR4BDE4lKRCSlYk8G0Wi/9qjxDNbvabESGB13XCIi
+aZZEm8FphBGBhwK7EQapjMl5vQVYVmwDfX39mcbGhspFKCIyNA3ajTb2ZODuB2Yfm9lTwFnANWZ2
+oLvPJowQfaLYNjo68gfkiojIhowZ0zLoa9UwAjlD6C99RzRnzULg/mRDEhFJl5ocZ9DevqL2ghYR
+SdiYMS2DVhNpBLKIiCgZiIiIkoGIiKBkICIiKBmIiAhKBiIigpKBiIigZJB6bW0LaWtbmHQYIpKw
+ahiBLAmaMWM6AOPG7ZRwJCKSJJUMUqytbSHui3BfpNKBSMopGaRYtlSQ/1hE0kfJQERElAzSbMKE
+4ws+FpH0UQNyio0btxNmO655LCLppWSQcioRiAjofgYiIqmh+xmIiEhRsVcTmVkDcAfwXsItL88C
+eoA7gQFgAXC2u+vqX0QkJkmUDD4CDLj7fsClwFXAdcDF7n4AUAdMSCAuEZHUij0ZuPsM4Mzo6TuA
+DmAPd386WvYIcGjccYmIpFkivYncvd/M7gSOBf4LOCzn5ZXA6GLvb20dSWNjQ+UCFBFJmcS6lrr7
+JDP7D+C3wBY5L7UAy4q9t6Ojq5KhiYgMSWPGtAz6WuzVRGZ2spldFD3tBvqB58zswGjZkcDTBd8s
+ZacprEUEkikZ3A/caWazgWHAuUAbcIeZDQcWRutIDDSFtYhAAsnA3buBEwu8dFDMoaRedgrr7GMl
+BJH00qCzFNMU1iKSpWSQYl1dnQUfi0j6KBmIiIiSQZqNHNlc8LGIpI+SQYrp5ja1T12DpVx0P4MU
+081tap+6Bku5KBmknEoEtUtdg6WcVE2UcuPG7aSTSI1S12ApJyUDERFRMhCpVeoAIOWkNgORGqUO
+AFJOSgYiNUwlAimXukym9m413N6+ovaCFhFJ2JgxLXWDvaY2AxERUTIQERElAxERIYEGZDMbBvwP
+sAPQBHwNWATcCQwAC4Cz3b0q2gWy876ot4ZIvHTsxSuJksFEoN3dDwCOAG4GrgMujpbVARMSiKug
+GTOma3SnSAJ07MUriWRwH/DVnM9fDYx396ejZY8AhyYQ13qyc7+4L9LMkCIx0rEXv9iTgbt3uvtK
+M2shJIZL8+JYCYyOO65CNPeLSDJ07MUvkUFnZrYd8ABws7v/yMyuznm5BVhW7P2trSNpbGyoZIgA
+DBvWsM7jMWNaKv6ZIqJjLwlJNCD/BzAL+Iy7PxUtnmdmB7r7bOBI4Ili2+jo6KpwlMFRRx3LggUL
+1jxub18Ry+eKpJ2OvcoollSTKBlcTKgG+qqZZdsOzgVuMrPhwELg/gTiWk8a5n5Rjw2pRmk49qpN
+7MnA3c8lnPzzHRRzKCUZ6nO/1OKdsu69dxpz584pad3Ozk4AmptLu8fzXnvtzQknTNzk2KR8hvqx
+V200UV2KpeFOWb29PUDpyUCqx1D8PVYzJYMNqMUr51Ll99iolX084YSJJV+9n3/+OQBcc81NlQyp
+bDam1AMq+Uj5aDqKItTXWapdb2/PmtKPyOZQyaCIWr1yLtWECcdz9dVfW/NYkrcxpR4Y2iWfjS31
+gEo+m0PJIMXUY0Oqmdp74qVkUEQarpyH6n5JdRrK7T21TsmgiDRcOQ/V/RKRjaNksAG1eOWsfvgi
+srGUDDZgqF85q15WJBnVNvpfyWAIUr2sSPWrtjFMqUwGqkYRkSRV4+h/DTrbAA3qEZFyq8b7NaSy
+ZKBqFBGRdalkICISs9xeitXSYzGVJQMRkSRV4xgmJQMRkQRUS4kgS8lARCQB1VIiyEosGZjZ3sA3
+3f1gM3s3cCcwACwAznb3TFKxiYikTSINyGb2ZeAOoCladD1wsbsfANQBE5KIS0QkrZLqTfQq8FHC
+iR9gvLs/HT1+BDg0kahERFIqkWTg7g8AfTmL6nIerwRGxxuRiEi6VUsD8kDO4xZgWbGVW1tH0tjY
+UNmIIg0NIV+OGdMSy+fFTftX24by/g3lfatG1ZIM5pnZge4+GzgSeKLYyh0dXfFEBfT3hzzV3r4i
+ts+Mk/avtg3l/RvK+5aUYok16WSQ7TH0ReAOMxsOLATuTy4kEZH0SSwZuPufgA9Ej18BDkoqFhGR
+tNPcRCIiomQgIiJKBiIiQvINyCIiQ0Yt30VRJQMRkQRU210UVTIQESmTWr6LokoGIiKiZCAiIkoG
+IiKCkoGIiFAkGZjZidH/Y+ILR0REklCsZHCFmTUCM+MKRkREklGsa+kzQA9QZ2YDea9l3D2eGwqU
+6KqrptDRsbTs281uM9sNrJxaW7fi4ounlH27IiIbq1gyeMndG8xshrtX/T2JOzqWsmTJEuqGjSjr
+djNR4Wnp8vLeQyGzurus2xMR2RzFksFnzewh4N1mtn3+i+7+WuXC2jR1w0aw5buPSTqMkqx89cGk
+QxARWaNYMriH0F6wLTC7wOvvrEhEUpCqwUSkkgZNBu5+GXCZmd3i7p+OMSYpoKNjKUuWvkH9iPLO
+IDJQH24219Fd9LbTG7/d7r6ybk+qVy1eqIAuVvINemYxs4+4+8+BZ83slPzX3f0H5QzEzOqB7wG7
+EhquT3f3P5TzM2pd/YhGWo9Yr8auKnU8WnW1iFIhHR1LWbr0DVqah5d1u41RF5XVPcvLul2AFZ29
+Zd9mrSt2mbkX8HPgYNbeqxigLnpe1mQAHAsMd/cPmNnewHXRMhGpci3Nwzlz4i5Jh1Gy26a9lHQI
+VWdD1US4+6SYYvkg8Gj0mXPMbM+YPlcSVqlqBlCbiEipilUTLS7yvoy7jy1zLKOA3PJgv5nVu3v+
+GAcZYjo6lrJ0yRtsWV/+2VEaBsLPp7fMyWblgH6WMrRsqJoI4BtAGzAV6Ac+DuxcgViWAy05zwdN
+BK2tI2lsXHfMW3d3F5nV3TXTZTOzupvubhgzpmXDKwMNDbU3jVRDQ31J+9fQUM+W9fV8YvRWMURV
+Hvf8e2nJ+1dJ2d9FknE0NNSzOrFP33RJ//2q4W+Xq1g10RsAZraHu5+R89JtZvZCBWJ5BjgauM/M
+9gFeHGzFjo71B4ANDGQKrFndBgYytLevKGnd/v7auxLt7x8oaf9qcd+g9P2Loxps0qTTyr7tUqvB
+hvrfr5KfD8QaQ7HEU0o/xYyZHebujwGY2TFAJZrifwocZmbPRM836tfd3NxMT39dTQ06a24emXQY
+EoPs6PimYeX/e9cRSsgrl5d3RHvP6vKOuJfqV0oymAzcbWZvI/QkWgyU/a7M7p4BNJ5BhqSmYSMZ
+v+PxSYdRshcWTS953c7OTnp6emuqh86Kzl6a+jqTDqOqbLAi2t3nu/sugAHvcfc93L0NwMymVDg+
+ERGJQcnDWbNtCHkmAFPKFo0MqrOzk4GevpoZzDXQ3UfngK680qC5uZnhjf01N85gWFNzSevW4gjr
+Ten2XN65DUREhpgwFcwSGpvL2+sn0xBOv//uKW8TbF/npjVIKxnUiObmZnrrV9fUdBTNI0q78hKp
+do3NLbzzhE8lHUZJFt97+ya9r/Y6r4uISNkpGYiIyGYng5fLEoWIiCRqg20G0Qyi+wHfBR4CxgNn
+ufv97v6JCscnIiIxKKVkcBPwHHA80E1IBhdWMigREYlXKb2J6t19tplNA6a7+2tm1rDBdyWgEhPV
+ZfpDt6+6hvLeuCOzuhvQdBQiUh1KSQZdZvYl4BDgc2Z2LpDc7E6DaG2tzIyXHR2rwvZHlfvEPbJi
+MYuIbKxSksFEwvxEH3X3pWb2VsI01lWlUjcZyY4OvOaamyqyfRGRalBKMrjA3T+XfeLuF5rZXcCp
+lQtL0qSzs5OegQHu+XdlpnmuhJUDAzR1aroNGTqK3ens+8C7gD3N7H1573lTpQMTEZH4FCsZfB3Y
+gdCbaAph+mqAPmBhZcOSNGlubmZYb0/N3elseLOm25Cho9idzhYT7l2wq5mNAkazNiFsCdROmX6I
+GOgu/6ylA739ANQPL28HsYHuPhhR1k2KSAWVMujsYsK4gqVA7r0l31mpoGR9FesttSrk9NYRZa75
+G1G5mKX6rOgs/81tVvX0AbBFU/nn01zR2ctWTWXfbE0r5Vs+HXiXu7eX60PN7DjgY+4+MXq+D3AD
+oQpqlrtfUa7PGirUW0qqVaWS/squcKEyrGlU2be9VVPpcXd2dtLXs2qTZwONW1/nCjr7ttjo95WS
+DP4MdGz0lgdhZjcChwPzchbfQui6utjMHjaz3dx9frk+U0QqRxcqQ0MpyeBV4Ndm9iTQEy3LbMbV
++zPAT4EzAaL2iKaojQJgJnAooGQgIolrbm6mr3FYTd3PoLlp42dMKCUZ/DX6l1U32Iq5zGwycF7e
+4knufq+ZHZSzbBSwPOf5CmBsKZ8hIiLlscFk4O5TNmXD7j4VmFrCqsuB3PvJjQKWFXtDa+tIGhvj
+mR6poSHM5TdmTHlveVctqmH/sjHUmoaG+pK+t6G+f5X8fEj+2KvFv9+m/O2KDTqb5+67m9lAgZcz
+7l6Ws7G7LzezXjMbS+jKejhhXMOgOjq6yvHRJenvD7vf3l510zGVRTXsXzaGWtPfP1DS9zbU96+S
+nw/JH3u1+Pcb7G9XLEEUG2ewe/R/JdJihnW7qZ4FTAMagJnuPrcCnykiIoMoZZxBM3AZYdbSRuBJ
+4FJ33+SJWdx9NjA75/kcYN9N3Z7UvpUVmpto1UC4qtuivrzXNCsHBtAoChlKSmlA/i7QCZxGuBnO
+GcCtwMkVjEtSpJKD0zo7QoIZXubP2AoNqpOhpZRksIe775rz/GwzW1SpgCR9KtVPHdRXXaRUpSSD
+OjNrdfcOADNrBVZXNiyRoaOzs5Oe1at4YdH0pEMpWc/qLuo6a6/hVDZdKcngeuC3ZvYgYYzBMcA3
+KhqViEgV6etcUfbpKPp7wl0UG5o2fuqIYvo6V0DTmzf6faUkg2nA9sBXCMng88D/bvQnVZF7753G
+3LlzSlq3I6pzzlY3bMhee+3NCSdM3OTYZOhpbm4m01/P+B2PTzqUkr2waDrNzZp2Fio4SWTXSgBG
+b8Jo4aKa3rxJMZeSDL4PbAEcR+j6eTLhpjfnbvSn1aDhwzW1oUiapWXupVKSwX8CO7p7BiCqLnq5
+olFV2AknTNTVu4hIjlI6X7/OunMFvQX4W2XCERGRJJR614jfmdnjhPsNHAz81cweIUxLcVTFohMR
+kViUkgy+lvf8uzmPM4iISM0rZdbSX8YQh4iIJKj25mYVEZGyUzIQEZGSG5BFZDP0rO6qyHQUff29
+ADQ2lHfgUs/qLrZEg87SRMlApMIqObtpR0c3AFuOKu+Je0tGaFbWlFEyEKkwzcoqtUBtBiIiEm/J
+wMxGA/cALcBw4Avu/qyZ7QPcQBjUNsvdr4gzLhGJRyUniQRNFLk54i4ZfB54zN0PAiYBN0fLbwVO
+cvf9gL3NbLeY4xKRKjN8eJMmioxR3G0G3wZ6osfDgG4zawGGu/viaPlM4FBgfsyxiUiFaZLI6lWx
+ZGBmk4Hz8hZPcvfnzWwb4G7CNNijgeU566xg3Ynx1tPaOpLGxoZyhptaDQ2hcDhmTEvCkVSG9k+q
+VbX97SqWDNx9KjA1f7mZ7QL8CPiiu//KzEYR2hCyRgHLim27o6OrnKGmWn9/uLVhe/uKhCOpDO2f
+VKsk/nbFEk+sbQZmthNwH6F9YCaAuy8Hes1srJnVAYcDT8cZl4hI2sXdZnAVoRfRTWYGsMzdjwPO
+ItxeswGY6e5zY45LRCTVYk0G7n7sIMvnAPvGGYuIiKylEchScyrZV1391CWtlAyGoI05WS5dugQY
+uidL9VMXKY2SQerVJR3ARlNf9XRoa1sIwLhxOyUcSTooGQxBpZ4s29oWcvXV4a6mkyefpYNOqsqM
+GWHKb/0u46GJ6lIse7DlPxZJWlvbQtwX4b5oTQlBKkvJIMW6ujoLPhZJmi5U4qdkICIiSgZpNnJk
+c8HHIkmbMOH4go+lcpQMUkwHnFSrceN2wmxHzHZUA3JM1JsoxbIHXPaxSDXRBUq8lAxSTgecSPnU
+8uh4JYOUU4lAqtWPfvQDAC6//JsJR1IZ1TY6XslARKpOW9tC/vKX19Y8rpWLlloeHa8GZBGpOtlS
+Qf5jqRwlAxGpOm+88UbBx1I5qiYSqSIb0wAJ1dcIWS5bb731mmqirbfeOuFo0iHWZGBmzcAPgTcB
+vcCp7v43M9sHuAHoA2a5+xVxxiVSq6qtEbJcTjrplDWTKJ500ikJR5MOcZcMTgfmuvvXzOxU4MvA
+ecCtwHHuvtjMHjaz3dx9fsyxpZKmCa4utdwAWU7jxu1EU1PTmsdSebG2Gbj7jYT7IAPsAHSYWQsw
+3N0XR8tnAofGGVeazZgxXROBSdVpa1tIT08PPT09mrU0JhUrGZjZZMJVf65J7v68mT0BvA84HBgN
+LM9ZZwUwtlJxyVrZaYKzj3UFJtUif9ZS/TYrr2LJwN2nAlMHee0QMzPgYWB3oCXn5VHAsmLbbm0d
+SWNjQ7lCTa3rr//Zmse/+MXP2H//vROMRmStYcMa1nk8ZkxLkbWlHOJuQL4IeN3d7wY6gT53X2Fm
+vWY2FlhMKC1MKbadjo6uiseaBqtX96/zuL19RYLRiKx11FHHsmDBgjWP9dssj2JJNe5xBlOBj5vZ
+U4ReRadFy88CpgFzgBfcfW7McaWSZi2VajVu3E5st932bLfd9qoiikmsJQN3/xdwZIHlc4B944xF
+NGupiKylQWcppxKBVKNanZuolmk6ipQbN24nHWhSdXQP5PgpGYiIiJKBiFQfdW6In9oMRKTqqHND
+/JQMRKQqqUQQr7pMJpN0DButvX1F7QUtIpKwMWNa6gZ7TW0GIlKV2toWapK6GKmaSESqUrZLqdoM
+4qGSgYhUneyMuu6LVDqIiZKBiFQdDTqLn5KBiIgoGYhI9dGgs/ipAVlEqo4GncVPyUBEqpJKBPHS
+oDMRkZTQoDMRESkqkWoiMxsHPAu8xd17zWwf4AagD5jl7lckEZeISFrFXjIws1HAdcCqnMW3ACe5
++37A3ma2W9xxiYikWazJwMzqgNuAi4DuaNkooMndF0erzQQOjTMuEZG0q1g1kZlNBs7LW/xn4Mfu
+/qKZAdQBo4DlOeusAMZWKi4REVlfxZKBu08FpuYuM7NXgMlRotiGUAo4GmjJWW0UsKzYtltbR9LY
+2FDegEVEUiyxrqVmthiwqAF5HnA8sBj4OTDF3ecO9l51LRUZ+rIT1GnQWfkU61qa5KCz3BP6WcA0
+oAGYWSwRiEg6aArreCWWDNx9bM7jOcC+ScUiItUlO4V19rESQuVp0JmIVB1NYR0/JQMREVEyEJHq
+oyms46dZS0Wk6mgK6/gpGYhIVVKJIF6awlpEJCU0hbWIiBSlZCBSw9raFq4ZqSuyOdRmIFLDNEpX
+ykUlA5EalR2l675IpQPZbEoGIjVKo3SlnJQMREREyUCkVmmUrpSTGpBFapRG6Uo5KRmI1DCVCKRc
+NAJZRCQlNAJZRESKirWayMzqgNeB30eLfuPul5jZPsANQB8wy92viDMuEZG0i7vN4F3A8+5+TN7y
+W4CPuvtiM3vYzHZz9/kxxyYiklpxJ4M9gLeb2ZNAN/B54B9Ak7svjtaZCRwKKBmIiMSkYsnAzCYD
+5+Ut/gxwlbtPN7MPAvcAxwHLc9ZZAYytVFwiIrK+iiUDd58KTM1dZmYjCO0CuPszZvY2wsm/JWe1
+UcCyYtsxgOgWAAAF+ElEQVQu1iIuIiIbL+7eRF8lKi2Y2fuB19x9OdBrZmOjBubDgadjjktEJNXi
+bjP4JnCPmR1FKCFMipafBUwDGoCZ7j435rhERFKtJgediYhIeWnQmYiIKBmIiIiSgYiIoFlL12Fm
+1xIGxm0DjAT+CLQDRwDP561+iLsPxBvhpjGzx4GL3H2umQ0n7NOV7n5t9PovgfcTpgnpIlwktAJf
+dvdHk4l685jZQcC9wMtAHTAMuMHd70syLiks7++VIXQx/yNwKfAc4firA5oJv+XHk4l080X7eqa7
+nxQ9/xhwGXCku7+eVFxKBjnc/UsAZnYqYO5+sZntAGzn7gcnG91meQzYH5gb/f8ocBRwrZltAWxP
+GPF9prv/HsDM3gtMj9atRRngiZwDrhmYbWa/d/ffJRvapjGzPYCrCBcq9cBTwOXAHcDuwFKgCVgM
+nOrufQmFuikywOPu/vHsAjObBhwNLMgef2b2HuABYJdEoiwzMzsJ+CLwIXdvTzIWVRMNri7v/1qW
+TQYARwLfB95kZqOAfYHZ0Wu5+/oOwsmlVq3zd3P3TuA24GPJhLN5zGxb4G7gbHff390/CPQQJnjM
+AOe7+8Hu/oHoLRMSCnVT1ZHzN4tKsG8FOlj3b7kV8M94Qyu7DICZnUwYd3VI0okAVDIo1U5m9lTO
+8+ezpYgaMR8YFz0+ALgYeJwwB9SuhKv/s4AfmFkfoaTw/4HT4g+1ov4JjE86iE10MnCHu7+aXeDu
+V5rZH4HfEp0wzayBUMVSiyfMD0XH2VuAAULyfgL4drS8kVAC+mxyIZZFHeHi7O2E6thhyYYTqGRQ
+moXRVVf2Xy0lAqK2jd+Z2RHAP9y9F3gE2C/6Nyta9eToivNKwgH5lyTiraB3ULv7tAOh+iffP4FV
+wNXRCXMhsC3wYoyxlcuTUXXQ/kAv8CfCiTN7/O1PmPn4KjPbLrkwy+LvhIuxGwkDcROvgVAySI/H
+gEuAX0TPf024Sq5z945oWR2Au98OvAZ8Pe4gKyWqEjsdqNUG5NfIm8DRzOoJSaKZtdVEBjwIXBd/
+iOXh7kuBTxCqM7fJe7mDMONxrddqvOruve5+MyHxXZJ0QLX+hVZS7tDs/GoigNPc/U8xxrO5Hgdu
+ByYCuPtqM+sA5uWsk7vP5wIvmtnd7v5SfGGWTYa11Q79hN/6V939lWTD2mQ/AGaZ2YPAG4SeN38h
+JPkB1q1Xf52QJGpJhpzfn7svMrObgC+w9vgbICS+23OmvK9F6+wr8Elgnpn9yt1nD/KeitN0FCI1
+wszGE3oTbQmMINwLZDnhBLkDocG/n1Di/2SNXaxIwpQMRGqYme0C/MHdu5KORWqbkoGIiKgBWURE
+lAxERAQlAxERQclARERQMhApGzO73Mw+Ej1+Kmf5vMHfJVId1JtIpALMbMDddbElNUPJQIQ1c8xf
+Gj3dljD52+mEEdtfIIwYfZ4wSVov8D/AztH633P375vZnYRppccDnwPmuPu+2cRgZiMJ003vShhN
+e627321mkwj3zGglTDkxy93Pruwei6xLVy4ia+0DnAnsCGwBXESY4fUAd98V6CTchGRfoNXdxxMm
+G8tOG50BMu5+LoC775u3/SlAu7vvAnwImBINGiPa5kcJieJoM9sZkRgpGYis9bi7/8HdM4R7B3wF
+eDBnIr/bgUOABYCZ2aOECdUuLHH7BwNTAdx9CTADOIiQRH7j7p3u3k24w9dW5dklkdIoGYislXtn
+sAbybrhCOF4ao1k1dwa+AxjwgpmNLmH79YW2Fz1elbM8w9C4qZLUECUDkbUONrNtoqmhTwY+Dxxj
+Zq3R62cAT5rZh4F73P1hwuyuK4H8+fX7oxvN5HoSmAxgZlsT7kb2FDrxSxVQMhBZ66/ANMJN2V8H
+vgt8g3Dv5EWEO4hdCswEuszsZWAOMN3dF+RtawYw38yaWDtd8RXAVmb2IuFWo19z9/msP6WxSOzU
+m0iENb2JLnD3I5OORSQJKhmIBLo6l1RTyUBERFQyEBERJQMREUHJQEREUDIQERGUDEREBCUDEREB
+/g94AwZYP8A9sgAAAABJRU5ErkJggg==
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I also looked at the distribution of actual points by position. One thing you hear in fantasy is to select RBs early because they are high variance players. Meaning that you suffer more by getting a lower ranked RB than a lower ranked QB. This is also due to the fact that a lot more RBs are getting drafted than QBs. Below is the distribution for all players and provides a general sense.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [23]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">combined_df</span><span class="o">.</span><span class="n">points_actual</span><span class="p">,</span> <span class="n">groupby</span><span class="o">=</span><span class="n">combined_df</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Distribution of Actual Points by Position"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To see if the high variance difference is playing out, we can look at the top 12 quarterbacks and top 36 running backs so far in the season (assume 12 team league with 1 starting QB and 3 starting RBs). You can see below that indeed the RBs standard deviation is quite a bit higher (about 7 points) than the QBs.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [34]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">'position'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"QB"</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'points_actual'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>points_actual</th>
+<th>points_predicted</th>
+<th>points_diff</th>
+<th>points_diff_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>12.000000</td>
+<td>12.000000</td>
+<td>12.000000</td>
+<td>12.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>60.500000</td>
+<td>58.425000</td>
+<td>2.075000</td>
+<td>0.052784</td>
+</tr>
+<tr>
+<th>std</th>
+<td>10.706837</td>
+<td>8.424761</td>
+<td>12.753048</td>
+<td>0.227619</td>
+</tr>
+<tr>
+<th>min</th>
+<td>48.000000</td>
+<td>45.400000</td>
+<td>-17.800000</td>
+<td>-0.258721</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>50.500000</td>
+<td>51.475000</td>
+<td>-5.175000</td>
+<td>-0.089687</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>60.500000</td>
+<td>57.500000</td>
+<td>0.400000</td>
+<td>0.006114</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>67.500000</td>
+<td>65.750000</td>
+<td>11.075000</td>
+<td>0.217831</td>
+</tr>
+<tr>
+<th>max</th>
+<td>77.000000</td>
+<td>69.900000</td>
+<td>24.800000</td>
+<td>0.475096</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [35]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">combined_df</span><span class="p">[</span><span class="n">combined_df</span><span class="p">[</span><span class="s1">'position'</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"QB"</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s1">'points_actual'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>points_actual</th>
+<th>points_predicted</th>
+<th>points_diff</th>
+<th>points_diff_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>36.000000</td>
+<td>36.000000</td>
+<td>3.600000e+01</td>
+<td>36.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>41.083333</td>
+<td>50.894444</td>
+<td>-9.811111e+00</td>
+<td>-0.186386</td>
+</tr>
+<tr>
+<th>std</th>
+<td>17.762521</td>
+<td>15.940549</td>
+<td>1.436052e+01</td>
+<td>0.272579</td>
+</tr>
+<tr>
+<th>min</th>
+<td>9.000000</td>
+<td>14.600000</td>
+<td>-4.620000e+01</td>
+<td>-0.625000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>28.000000</td>
+<td>44.325000</td>
+<td>-1.732500e+01</td>
+<td>-0.366491</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>41.500000</td>
+<td>54.750000</td>
+<td>-1.295000e+01</td>
+<td>-0.259642</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>49.500000</td>
+<td>62.650000</td>
+<td>-1.776357e-15</td>
+<td>-0.002554</td>
+</tr>
+<tr>
+<th>max</th>
+<td>77.000000</td>
+<td>74.200000</td>
+<td>2.480000e+01</td>
+<td>0.475096</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="In-conclusion">In conclusion<a class="anchor-link" href="#In-conclusion">¶</a></h1><p>These were just some quick analyses I did to try and get a sense of which players are doing well/poorly and how various positions are performing.</p>
+<p>If people find this interesting, I can try and update the data as the season goes on.</p>
+<p>I am hoping to find time to investigate the ESPN projections to see how sensical they really are. Based on the chart above, they seem to aim high, leading to many under performers. I would like to try and build my own projection model to see how well I can compare. Now that I think about it, here are the overall summary statistics below. It looks like on average ESPN is over projecting by about 4 points with a standard deviation of 10.5 points.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [38]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">combined_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[38]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>points_actual</th>
+<th>points_predicted</th>
+<th>points_diff</th>
+<th>points_diff_pct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>408.000000</td>
+<td>408.000000</td>
+<td>408.000000</td>
+<td>408.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>17.424020</td>
+<td>21.504167</td>
+<td>-4.080147</td>
+<td>1.497506</td>
+</tr>
+<tr>
+<th>std</th>
+<td>15.399643</td>
+<td>16.295564</td>
+<td>10.514605</td>
+<td>10.662482</td>
+</tr>
+<tr>
+<th>min</th>
+<td>0.000000</td>
+<td>0.100000</td>
+<td>-46.200000</td>
+<td>-1.000000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>5.000000</td>
+<td>7.875000</td>
+<td>-10.125000</td>
+<td>-0.500389</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>14.000000</td>
+<td>19.550000</td>
+<td>-3.550000</td>
+<td>-0.250522</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>25.000000</td>
+<td>30.725000</td>
+<td>1.500000</td>
+<td>0.180199</td>
+</tr>
+<tr>
+<th>max</th>
+<td>77.000000</td>
+<td>74.200000</td>
+<td>33.600000</td>
+<td>119.000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/nfl.html">nfl</a>
+    </p>
+  </div>
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Tyler Folkman </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Learning With Data ",
+  "url" : "http://localhost:8000",
+  "image": "/images/profile.jpg",
+  "description": ""
+}
+</script>
+</body>
+</html>

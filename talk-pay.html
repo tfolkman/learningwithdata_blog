@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Learning With Data Atom">
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+
+<meta name="author" content="Tyler Folkman" />
+<meta name="description" content="TALKPAY¶" />
+<meta name="keywords" content="twitter">
+<meta property="og:site_name" content="Learning With Data"/>
+<meta property="og:title" content="Talk Pay"/>
+<meta property="og:description" content="TALKPAY¶"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/talk-pay.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-05-01 00:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/tyler-folkman.html">
+<meta property="article:section" content="data-exploration"/>
+<meta property="article:tag" content="twitter"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Learning With Data &ndash; Talk Pay</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="/images/profile.jpg" alt="Tyler Folkman" title="Tyler Folkman">
+      </a>
+      <h1><a href="http://localhost:8000">Tyler Folkman</a></h1>
+
+<p>Data Scientist @Ancestry</p>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/tylerfolkman" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/tfolkman" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:learningwithdata@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/tyler_folkman" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="http://localhost:8000/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="talk-pay">Talk Pay</h1>
+    <p>
+          Posted on Fri 01 May 2015 in <a href="http://localhost:8000/category/data-exploration.html">data-exploration</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/.ansibold{font-weight:700}.ansiblack{}.ansired{color:#8b0000}.ansigreen{6400}.ansiyellow{color:#c4a000}.ansiblue{8b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-f}.ansibgpurple{background-color:#ff00ff}.ansibgcyan{background-ff}.ansibggray{background-color:gray}div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;border-radius:2px;box-sizing:border-box;-moz-box-sizing:border-box;border-width:thin;border-style:solid;width:100%;padding:5px;margin:0;outline:0}div.cell.selected{border-color:#ababab}@media print{div.cell.selected{border-color:transparent}}.edit_mode div.cell.selected{border-color:green}.prompt{min-width:14ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}@-moz-document url-prefix(){div.inner_cell{overflow-x:hidden}}div.input_area{border:1px solid #cfcfcf;border-radius:2px;background:#f7f7f7;line-height:1.21429em}div.prompt:empty{padding-top:0;padding-bottom:0}div.unrecognized_cell{padding:5px 5px 5px 0;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.unrecognized_cell .inner_cell{border-radius:2px;padding:5px;font-weight:700;color:red;border:1px solid #cfcfcf;background:#eaeaea}div.unrecognized_cell .inner_cell a,div.unrecognized_cell .inner_cell a:hover{color:inherit;text-decoration:none}@media (max-width:540px){.prompt{text-align:left}div.unrecognized_cell>div.prompt{display:none}}div.code_cell{}div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.input{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:navy;border-top:1px solid transparent}div.input_area>div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}div.input_area>div.highlight>pre{margin:0;border:none;padding:0;background-color:transparent}.CodeMirror{line-height:1.21429em;font-size:14px;height:auto;background:0 0}.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}.CodeMirror-lines{padding:.4em}.CodeMirror-linenumber{padding:0 8px 0 4px}.CodeMirror-gutters{border-bottom-left-radius:2px;border-top-left-radius:2px}.CodeMirror pre{padding:0;border:0;border-radius:0}.highlight-base,.highlight-variable{}.highlight-variable-2{color:#1a1a1a}.highlight-variable-3{color:#333}.highlight-string{color:#BA2121}.highlight-comment{color:#408080;font-style:italic}.highlight-number{80}.highlight-atom{color:#88F}.highlight-keyword{color:green;font-weight:700}.highlight-builtin{color:green}.highlight-error{color:red}.highlight-operator{color:#A2F;font-weight:700}.highlight-meta{color:#A2F}.highlight-def{f}.highlight-string-2{color:#f50}.highlight-qualifier{color:#555}.highlight-bracket{color:#997}.highlight-tag{color:#170}.highlight-attribute{c}.highlight-header{f}.highlight-quote{90}.highlight-link{c}.cm-s-ipython span.cm-keyword{color:green;font-weight:700}.cm-s-ipython span.cm-atom{color:#88F}.cm-s-ipython span.cm-number{80}.cm-s-ipython span.cm-def{f}.cm-s-ipython span.cm-variable{}.cm-s-ipython span.cm-operator{color:#A2F;font-weight:700}.cm-s-ipython span.cm-variable-2{color:#1a1a1a}.cm-s-ipython span.cm-variable-3{color:#333}.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}.cm-s-ipython span.cm-string{color:#BA2121}.cm-s-ipython span.cm-string-2{color:#f50}.cm-s-ipython span.cm-meta{color:#A2F}.cm-s-ipython span.cm-qualifier{color:#555}.cm-s-ipython span.cm-builtin{color:green}.cm-s-ipython span.cm-bracket{color:#997}.cm-s-ipython span.cm-tag{color:#170}.cm-s-ipython span.cm-attribute{c}.cm-s-ipython span.cm-header{f}.cm-s-ipython span.cm-quote{90}.cm-s-ipython span.cm-link{c}.cm-s-ipython span.cm-error{color:red}.cm-s-ipython span.cm-tab{background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=')right no-repeat}div.output_wrapper{display:-webkit-box;-webkit-box-align:stretch;display:-moz-box;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;z-index:1}div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:2px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,.8);box-shadow:inset 0 2px 8px rgba(0,0,0,.8);display:block}div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:2px}div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,.5)}div.output_prompt{color:#8b0000}div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left!important}div.output_area div.output_area img,div.output_area svg{max-width:100%;height:auto}div.output_area img.unconfined,div.output_area svg.unconfined{max-width:none}.output{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}@media (max-width:540px){div.output_area{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;background-color:transparent;border-radius:0}div.output_subarea{overflow-x:auto;padding:.4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1;max-width:calc(100% - 14ex)}div.output_text{text-align:left;line-height:1.21429em}div.output_stderr{background:#fdd}div.output_latex{text-align:left}div.output_javascript:empty{padding:0}.js-error{color:#8b0000}div.raw_input_container{font-family:monospace;padding-top:5px}span.raw_input_prompt{}input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}input.raw_input:focus{box-shadow:none}p.p-space{margin-bottom:10px}div.output_unrecognized{padding:5px;font-weight:700;color:red}div.output_unrecognized a,div.output_unrecognized a:hover{color:inherit;text-decoration:none}.rendered_html{}.rendered_html :link,.rendered_html :visited,.rendered_html h1:first-child{margin-top:.538em}.rendered_html h2:first-child{margin-top:.636em}.rendered_html h3:first-child{margin-top:.777em}.rendered_html h4:first-child,.rendered_html h5:first-child,.rendered_html h6:first-child{margin-top:1em}.rendered_html *+ol,.rendered_html *+ul{margin-top:1em}.rendered_html *+table{margin-top:1em}.rendered_html *+p{margin-top:1em}.rendered_html *+img{margin-top:1em}div.text_cell{display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.text_cell>div.prompt{display:none}}div.text_cell_render{outline:0;resize:none;width:inherit;border-style:none;padding:.5em .5em .5em .4em;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}a.anchor-link:link{text-decoration:none;padding:0 20px;visibility:hidden}h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible}.text_cell.rendered .input_area{display:none}.text_cell.rendered .text_cell.unrendered .text_cell_render{display:none}.cm-header-1,.cm-header-2,.cm-header-3,.cm-header-4,.cm-header-5,.cm-header-6{font-weight:700;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.cm-header-1{font-size:185.7%}.cm-header-2{font-size:157.1%}.cm-header-3{font-size:128.6%}.cm-header-4{font-size:110%}.cm-header-5,.cm-header-6{font-size:100%;font-style:italic}</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TALKPAY">TALKPAY<a class="anchor-link" href="#TALKPAY">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [137]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">tweepy</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">'ticks'</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">'Set2'</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+ 
+<span class="c1"># Consumer keys and access tokens, used for OAuth - insert your keys</span>
+<span class="n">consumer_key</span> <span class="o">=</span> <span class="s1">''</span>
+<span class="n">consumer_secret</span> <span class="o">=</span> <span class="s1">''</span>
+<span class="n">access_token</span> <span class="o">=</span> <span class="s1">''</span>
+<span class="n">access_token_secret</span> <span class="o">=</span> <span class="s1">''</span>
+ 
+<span class="c1"># OAuth process, using the keys and tokens</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">access_token_secret</span><span class="p">)</span>
+ 
+<span class="c1"># Creation of the actual interface, using authentication</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">c</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">Cursor</span><span class="p">(</span><span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="s1">'talkpay'</span><span class="p">)</span>
+<span class="n">c_iter</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="n">all_text</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="n">c_iter</span><span class="p">:</span>
+    <span class="n">all_text</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tweet</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I do probably the most naive approach to extracting the data I want. I just pull out the digits that fall in between \$ and k. For example, $125k returns 125. This obviously doesn't get all the data and even gets some data we might not care about. For example, some people put multiple salaries over time, for which we maybe only want the most recent. For the sake of quickness and getting more data, I include everything my naive approach finds.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [152]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">thous_dollars_raw</span> <span class="o">=</span> <span class="p">[</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">r'\$(\d*)[k|K]'</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span> <span class="o">|</span> <span class="n">re</span><span class="o">.</span><span class="n">MULTILINE</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">all_text</span><span class="p">]</span>
+<span class="n">thous_dollars</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dollar</span> <span class="ow">in</span> <span class="n">thous_dollars_raw</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dollar</span><span class="p">)</span> <span class="o">></span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dollar</span><span class="p">:</span>
+            <span class="n">thous_dollars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+<span class="n">thous_dollars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">thous_dollars</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [154]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">thous_dollars</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Thousands of Dollars"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Number of People"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"#talkpay tweets"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+xC1zTzYAAAAASUVORK5CYII=
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [142]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">pd_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">thous_dollars</span><span class="p">)</span>
+<span class="n">pd_series</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[142]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>count    315.000000
+mean      96.530159
+std       69.642089
+min        2.000000
+25%       42.000000
+50%       84.000000
+75%      135.000000
+max      500.000000
+dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It looks like we got 315 salaries from our approach - not too bad. Also, the median salary comes out to be \$84k with the mean being pulled up to \$96.5k from the few large outliers we have. Virtually all of our data falls below \$200k and 75 percent of it below \$135k.</p>
+<p>So - it is kind of interesting to look at this data. I would be very hesitant to really infer much given the nature of the data and my naive way of extracting it. But still a fun, quick side project :)</p>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/twitter.html">twitter</a>
+    </p>
+  </div>
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Tyler Folkman </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Learning With Data ",
+  "url" : "http://localhost:8000",
+  "image": "/images/profile.jpg",
+  "description": ""
+}
+</script>
+</body>
+</html>

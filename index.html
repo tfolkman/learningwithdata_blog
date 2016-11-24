@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Learning With Data Atom">
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+
+    <meta name="author" content="Tyler Folkman" />
+    <meta name="description" content="" />
+<meta property="og:site_name" content="Learning With Data"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Learning With Data"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Learning With Data</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="/images/profile.jpg" alt="Tyler Folkman" title="Tyler Folkman">
+      </a>
+      <h1><a href="http://localhost:8000">Tyler Folkman</a></h1>
+
+<p>Data Scientist @Ancestry</p>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/tylerfolkman" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/tfolkman" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:learningwithdata@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/tyler_folkman" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="http://localhost:8000/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+
+
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/high-school-offensive-tackles.html#high-school-offensive-tackles">High School Offensive Tackles</a></h2>
+    <p>
+          Posted on Mon 14 March 2016 in <a href="http://localhost:8000/category/data-exploration.html">data-exploration</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/nfl.html">nfl</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Offensive-Tackles-in-Football">Offensive Tackles in Football<a class="anchor-link" href="#Offensive-Tackles-in-Football">¶</a></h1><p>So I have a brother who is currently 16 and plays high school football as an offensive tackle. He is 6 feet 2 inches and weights 250 pounds. Now that is a big kid. His dream is to play professional football one day.</p>
+<p>The first step to playing professional football is to play college football for hopefully a good team. Not knowing much about what it takes to get recruited by a top college football team, I thought I would look for some data. Fortunately, ESPN has height and weight data on the <a href="http://espn.go.com/college-sports/football/recruiting/playerrankings/_/position/offensive-tackle/class/2015/view/position">top 100 offensive tackles</a>
+      <br>
+      <a class="btn" href="http://localhost:8000/high-school-offensive-tackles.html#high-school-offensive-tackles">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/bayes-primer.html#bayes-primer">Bayes Primer</a></h2>
+    <p>
+          Posted on Sat 17 October 2015 in <a href="http://localhost:8000/category/ml.html">ml</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/tutorial.html">tutorial</a>,              <a href="http://localhost:8000/tag/bayesian.html">bayesian</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="What-is-Bayes-Theorem?">What is Bayes Theorem?<a class="anchor-link" href="#What-is-Bayes-Theorem?">¶</a></h1><p>Bayes theorem is what allows us to go from a <strong>sampling (or likelihood) distribution</strong> and a <strong>prior distribution</strong> to a <strong>posterior distribution</strong>.</p>
+<h2 id="What-is-a-Sampling-Distribution?">What is a Sampling Distribution?<a class="anchor-link" href="#What-is-a-Sampling-Distribution?">¶</a></h2><p>A sampling distribution is the probability of seeing <strong>our data (X)</strong> given our <strong>parameters ($\theta$).</strong> This is written as $p(X|\theta)$.</p>
+<p>For example, we might have data on 1,000 coin flips. Where 1 indicates a head. This can be represented in python as</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/bayes-primer.html#bayes-primer">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/predicting-fantasy-football-points.html#predicting-fantasy-football-points">Predicting Fantasy Football Points</a></h2>
+    <p>
+          Posted on Wed 07 October 2015 in <a href="http://localhost:8000/category/applied-ml.html">applied-ml</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/nfl.html">nfl</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Predicting-Fantasy-Football-Points">Predicting Fantasy Football Points<a class="anchor-link" href="#Predicting-Fantasy-Football-Points">¶</a></h1><p>If you read my last <a href="http://nbviewer.ipython.org/github/tfolkman/learningwithdata/blob/master/Biggest_Misses.ipynb">post</a> you will know that I recently started fantasy football and my team isn't doing so great. Currently 0 and 4. Ha!</p>
+<p>What seemed strange to me, though, is that my team kept underperforming relative to the ESPN projections. The consistent underperformance lead me to try and develop my own prediction model to see if I couldn't maybe do a better job.</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/predicting-fantasy-football-points.html#predicting-fantasy-football-points">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/fantasy-football.html#fantasy-football">Fantasy Football</a></h2>
+    <p>
+          Posted on Wed 30 September 2015 in <a href="http://localhost:8000/category/data-exploration.html">data-exploration</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/nfl.html">nfl</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Fantasy-Football">Fantasy Football<a class="anchor-link" href="#Fantasy-Football">¶</a></h1><p>So - this is my first year participating in a fantasy football league. I enjoy football, but I typically only keep up with a few teams, so drafting an actual team was a bit daunting. So, like most things, I relied on data to help me out. I spent some time researching strategy, looking at projections, and even simulating some drafts. Draft day came and I felt pretty good about my team...but now I am currently 0-3 for the season. Ha.</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/fantasy-football.html#fantasy-football">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/mimic-data.html#mimic-data">MIMIC Data</a></h2>
+    <p>
+          Posted on Tue 22 September 2015 in <a href="http://localhost:8000/category/ml-data-exploration.html">ml, data-exploration</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/health.html">health</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="MIMIC-II-Demo-DATA">MIMIC II Demo DATA<a class="anchor-link" href="#MIMIC-II-Demo-DATA">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The MIMIC II database demo is a subset of 4,000 (of over 32,000) patients from the MIMIC II database. These data are located here: <a href="http://physionet.org/mimic2/demo/">http://physionet.org/mimic2/demo/</a>.</p>
+<p>No living patients are included in the demo subset (although many of these patients lived for up to several years followingi their ICU admissions documented in this data set). Although these data are exempt from HIPAA requirements for protecting health information of living individuals, the data have been very carefully deidentified, and we have removed free-text notes and reports as a further measure to reduce the possibility of disclosing information that might be used to identify these patients.</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/mimic-data.html#mimic-data">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/spark-dataframes.html#spark-dataframes">Spark DataFrames</a></h2>
+    <p>
+          Posted on Sat 01 August 2015 in <a href="http://localhost:8000/category/big-data.html">big-data</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/spark.html">spark</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Spark">Spark<a class="anchor-link" href="#Spark">¶</a></h1><p><a href="https://spark.apache.org/">Spark</a> is a really awesome tool to easily do distributed computations in order to process large-scale data. To be honest, most people probably don't need spark for their own side projects - most of these data will fit in memory or work well in a traditional database like PostgreSQL. That being said, there is a good chance you might need Spark if you are doing data science type work for your job. A lot of companies have a tremendous amount of data and Spark is a great tool to help effectively process these large data.</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/spark-dataframes.html#spark-dataframes">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/talk-pay.html#talk-pay">Talk Pay</a></h2>
+    <p>
+          Posted on Fri 01 May 2015 in <a href="http://localhost:8000/category/data-exploration.html">data-exploration</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/twitter.html">twitter</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="TALKPAY">TALKPAY<a class="anchor-link" href="#TALKPAY">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+      <br>
+      <a class="btn" href="http://localhost:8000/talk-pay.html#talk-pay">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/logistic-regression-and-optimization.html#logistic-regression-and-optimization">Logistic Regression and Optimization</a></h2>
+    <p>
+          Posted on Wed 29 April 2015 in <a href="http://localhost:8000/category/ml.html">ml</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/tutorial.html">tutorial</a>,              <a href="http://localhost:8000/tag/logistic-regression.html">logistic-regression</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Logistic-Regression-and-Gradient-Descent">Logistic Regression and Gradient Descent<a class="anchor-link" href="#Logistic-Regression-and-Gradient-Descent">¶</a></h1><p>Logistic regression is an excellent tool to know for classification problems. Classification problems are problems where you are trying to classify observations into groups. To make our examples more concrete, we will consider the <a href="https://archive.ics.uci.edu/ml/datasets/Iris">Iris dataset</a>. The iris dataset contains 4 attributes for 3 types of iris plants. The purpose is to classify which plant you have just based on the attributes. To simplify things, we will only consider 2 attributes and 2 classes. Here are the data visually:</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/logistic-regression-and-optimization.html#logistic-regression-and-optimization">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/bayes-with-continuous-prior.html#bayes-with-continuous-prior">Bayes With Continuous Prior</a></h2>
+    <p>
+          Posted on Fri 03 April 2015 in <a href="http://localhost:8000/category/ml.html">ml</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/bayesian.html">bayesian</a>,              <a href="http://localhost:8000/tag/tutorial.html">tutorial</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Continuous-Prior">Continuous Prior<a class="anchor-link" href="#Continuous-Prior">¶</a></h1><p>In my <a href="http://nbviewer.ipython.org/github/tfolkman/learningwithdata/blob/master/Bayes_Primer.ipynb">introduction</a> to Bayes post, I went over a simple application of Bayes theorem to Bernoulli distributed data. In this post, I want to extend our example to use a continous prior.</p>
+<p>In my last post, I ended with this code:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+      <br>
+      <a class="btn" href="http://localhost:8000/bayes-with-continuous-prior.html#bayes-with-continuous-prior">    Continue reading
+</a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/python-for-data-mining.html#python-for-data-mining">Python For Data Mining</a></h2>
+    <p>
+          Posted on Sat 17 January 2015 in <a href="http://localhost:8000/category/ml-data-exploration.html">ml, data-exploration</a>
+
+
+          &#8226;     Tagged with
+
+              <a href="http://localhost:8000/tag/tutorial.html">tutorial</a>
+    </p>
+  </header>
+  <div>
+      
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="INTRODUCTION-TO-PYTHON-FOR-DATA-MINING">INTRODUCTION TO PYTHON FOR DATA MINING<a class="anchor-link" href="#INTRODUCTION-TO-PYTHON-FOR-DATA-MINING">¶</a></h1><p>Python is a great language for data mining. It has a lot of great libraries for exploring, modeling, and visualizing data. To get started I would recommend downloading the <a href="http://continuum.io/downloads">Anaconda Package</a>. It comes with most of the libraries you will need and provides and IDE and package manager.</p>
+      <br>
+      <a class="btn" href="http://localhost:8000/python-for-data-mining.html#python-for-data-mining">    Continue reading
+</a>
+  </div>
+</article>
+
+  <div class="pagination">
+  </div>
+
+
+
+
+    <footer>
+<p>&copy; Tyler Folkman </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Learning With Data ",
+  "url" : "http://localhost:8000",
+  "image": "/images/profile.jpg",
+  "description": ""
+}
+</script>
+</body>
+</html>

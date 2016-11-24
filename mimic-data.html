@@ -1,0 +1,2530 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/font-awesome.min.css">
+
+
+    <link href="http://localhost:8000/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Learning With Data Atom">
+
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+
+
+<meta name="author" content="Tyler Folkman" />
+<meta name="description" content="MIMIC II Demo DATA¶ The MIMIC II database demo is a subset of 4,000 (of over 32,000) patients from the MIMIC II database. These data are located here: http://physionet.org/mimic2/demo/. No living patients are included in the demo subset (although many of these patients lived for up to several years followingi their ICU admissions documented in this data set). Although these data are exempt from HIPAA requirements for protecting health information of living individuals, the data have been very carefully deidentified, and we have removed free-text notes and reports as a further measure to reduce the possibility of disclosing information that might be used to identify these patients." />
+<meta name="keywords" content="health">
+<meta property="og:site_name" content="Learning With Data"/>
+<meta property="og:title" content="MIMIC Data"/>
+<meta property="og:description" content="MIMIC II Demo DATA¶ The MIMIC II database demo is a subset of 4,000 (of over 32,000) patients from the MIMIC II database. These data are located here: http://physionet.org/mimic2/demo/. No living patients are included in the demo subset (although many of these patients lived for up to several years followingi their ICU admissions documented in this data set). Although these data are exempt from HIPAA requirements for protecting health information of living individuals, the data have been very carefully deidentified, and we have removed free-text notes and reports as a further measure to reduce the possibility of disclosing information that might be used to identify these patients."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://localhost:8000/mimic-data.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-09-22 00:00:00-07:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://localhost:8000/author/tyler-folkman.html">
+<meta property="article:section" content="ml, data-exploration"/>
+<meta property="article:tag" content="health"/>
+<meta property="og:image" content="/images/profile.jpg">
+
+  <title>Learning With Data &ndash; MIMIC Data</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href="http://localhost:8000">
+        <img src="/images/profile.jpg" alt="Tyler Folkman" title="Tyler Folkman">
+      </a>
+      <h1><a href="http://localhost:8000">Tyler Folkman</a></h1>
+
+<p>Data Scientist @Ancestry</p>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="https://www.linkedin.com/in/tylerfolkman" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/tfolkman" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-envelope-o" href="mailto:learningwithdata@gmail.com" target="_blank"><i class="fa fa-envelope-o"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/tyler_folkman" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-rss" href="feeds/all.atom.xml" target="_blank"><i class="fa fa-rss"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+    <nav>
+      <a href="http://localhost:8000">    Home
+</a>
+
+      <a href="/categories.html">Categories</a>
+      <a href="/tags.html">Tags</a>
+
+      <a href="http://localhost:8000/feeds/all.atom.xml">    Atom
+</a>
+
+    </nav>
+
+<article class="single">
+  <header>
+    <h1 id="mimic-data">MIMIC Data</h1>
+    <p>
+          Posted on Tue 22 September 2015 in <a href="http://localhost:8000/category/ml-data-exploration.html">ml, data-exploration</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/.ansibold{font-weight:700}.ansiblack{}.ansired{color:#8b0000}.ansigreen{6400}.ansiyellow{color:#c4a000}.ansiblue{8b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-f}.ansibgpurple{background-color:#ff00ff}.ansibgcyan{background-ff}.ansibggray{background-color:gray}div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;border-radius:2px;box-sizing:border-box;-moz-box-sizing:border-box;border-width:thin;border-style:solid;width:100%;padding:5px;margin:0;outline:0}div.cell.selected{border-color:#ababab}@media print{div.cell.selected{border-color:transparent}}.edit_mode div.cell.selected{border-color:green}.prompt{min-width:14ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}@-moz-document url-prefix(){div.inner_cell{overflow-x:hidden}}div.input_area{border:1px solid #cfcfcf;border-radius:2px;background:#f7f7f7;line-height:1.21429em}div.prompt:empty{padding-top:0;padding-bottom:0}div.unrecognized_cell{padding:5px 5px 5px 0;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.unrecognized_cell .inner_cell{border-radius:2px;padding:5px;font-weight:700;color:red;border:1px solid #cfcfcf;background:#eaeaea}div.unrecognized_cell .inner_cell a,div.unrecognized_cell .inner_cell a:hover{color:inherit;text-decoration:none}@media (max-width:540px){.prompt{text-align:left}div.unrecognized_cell>div.prompt{display:none}}div.code_cell{}div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.input{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.input_prompt{color:navy;border-top:1px solid transparent}div.input_area>div.highlight{margin:.4em;border:none;padding:0;background-color:transparent}div.input_area>div.highlight>pre{margin:0;border:none;padding:0;background-color:transparent}.CodeMirror{line-height:1.21429em;font-size:14px;height:auto;background:0 0}.CodeMirror-scroll{overflow-y:hidden;overflow-x:auto}.CodeMirror-lines{padding:.4em}.CodeMirror-linenumber{padding:0 8px 0 4px}.CodeMirror-gutters{border-bottom-left-radius:2px;border-top-left-radius:2px}.CodeMirror pre{padding:0;border:0;border-radius:0}.highlight-base,.highlight-variable{}.highlight-variable-2{color:#1a1a1a}.highlight-variable-3{color:#333}.highlight-string{color:#BA2121}.highlight-comment{color:#408080;font-style:italic}.highlight-number{80}.highlight-atom{color:#88F}.highlight-keyword{color:green;font-weight:700}.highlight-builtin{color:green}.highlight-error{color:red}.highlight-operator{color:#A2F;font-weight:700}.highlight-meta{color:#A2F}.highlight-def{f}.highlight-string-2{color:#f50}.highlight-qualifier{color:#555}.highlight-bracket{color:#997}.highlight-tag{color:#170}.highlight-attribute{c}.highlight-header{f}.highlight-quote{90}.highlight-link{c}.cm-s-ipython span.cm-keyword{color:green;font-weight:700}.cm-s-ipython span.cm-atom{color:#88F}.cm-s-ipython span.cm-number{80}.cm-s-ipython span.cm-def{f}.cm-s-ipython span.cm-variable{}.cm-s-ipython span.cm-operator{color:#A2F;font-weight:700}.cm-s-ipython span.cm-variable-2{color:#1a1a1a}.cm-s-ipython span.cm-variable-3{color:#333}.cm-s-ipython span.cm-comment{color:#408080;font-style:italic}.cm-s-ipython span.cm-string{color:#BA2121}.cm-s-ipython span.cm-string-2{color:#f50}.cm-s-ipython span.cm-meta{color:#A2F}.cm-s-ipython span.cm-qualifier{color:#555}.cm-s-ipython span.cm-builtin{color:green}.cm-s-ipython span.cm-bracket{color:#997}.cm-s-ipython span.cm-tag{color:#170}.cm-s-ipython span.cm-attribute{c}.cm-s-ipython span.cm-header{f}.cm-s-ipython span.cm-quote{90}.cm-s-ipython span.cm-link{c}.cm-s-ipython span.cm-error{color:red}.cm-s-ipython span.cm-tab{background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=')right no-repeat}div.output_wrapper{display:-webkit-box;-webkit-box-align:stretch;display:-moz-box;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;z-index:1}div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:2px;-webkit-box-shadow:inset 0 2px 8px rgba(0,0,0,.8);box-shadow:inset 0 2px 8px rgba(0,0,0,.8);display:block}div.output_collapsed{margin:0;padding:0;display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.out_prompt_overlay{height:100%;padding:0 .4em;position:absolute;border-radius:2px}div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000;box-shadow:inset 0 0 1px #000;background:rgba(240,240,240,.5)}div.output_prompt{color:#8b0000}div.output_area{padding:0;page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}div.output_area .MathJax_Display{text-align:left!important}div.output_area div.output_area img,div.output_area svg{max-width:100%;height:auto}div.output_area img.unconfined,div.output_area svg.unconfined{max-width:none}.output{display:-webkit-box;-webkit-box-orient:vertical;display:-moz-box;-moz-box-orient:vertical;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}@media (max-width:540px){div.output_area{-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}}div.output_area pre{margin:0;padding:0;border:0;vertical-align:baseline;background-color:transparent;border-radius:0}div.output_subarea{overflow-x:auto;padding:.4em;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1;max-width:calc(100% - 14ex)}div.output_text{text-align:left;line-height:1.21429em}div.output_stderr{background:#fdd}div.output_latex{text-align:left}div.output_javascript:empty{padding:0}.js-error{color:#8b0000}div.raw_input_container{font-family:monospace;padding-top:5px}span.raw_input_prompt{}input.raw_input{font-family:inherit;font-size:inherit;color:inherit;width:auto;vertical-align:baseline;padding:0 .25em;margin:0 .25em}input.raw_input:focus{box-shadow:none}p.p-space{margin-bottom:10px}div.output_unrecognized{padding:5px;font-weight:700;color:red}div.output_unrecognized a,div.output_unrecognized a:hover{color:inherit;text-decoration:none}.rendered_html{}.rendered_html :link,.rendered_html :visited,.rendered_html h1:first-child{margin-top:.538em}.rendered_html h2:first-child{margin-top:.636em}.rendered_html h3:first-child{margin-top:.777em}.rendered_html h4:first-child,.rendered_html h5:first-child,.rendered_html h6:first-child{margin-top:1em}.rendered_html *+ol,.rendered_html *+ul{margin-top:1em}.rendered_html *+table{margin-top:1em}.rendered_html *+p{margin-top:1em}.rendered_html *+img{margin-top:1em}div.text_cell{display:-webkit-box;-webkit-box-orient:horizontal;display:-moz-box;-moz-box-orient:horizontal;display:box;box-orient:horizontal;box-align:stretch;display:flex;flex-direction:row;align-items:stretch}@media (max-width:540px){div.text_cell>div.prompt{display:none}}div.text_cell_render{outline:0;resize:none;width:inherit;border-style:none;padding:.5em .5em .5em .4em;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box}a.anchor-link:link{text-decoration:none;padding:0 20px;visibility:hidden}h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible}.text_cell.rendered .input_area{display:none}.text_cell.rendered .text_cell.unrendered .text_cell_render{display:none}.cm-header-1,.cm-header-2,.cm-header-3,.cm-header-4,.cm-header-5,.cm-header-6{font-weight:700;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.cm-header-1{font-size:185.7%}.cm-header-2{font-size:157.1%}.cm-header-3{font-size:128.6%}.cm-header-4{font-size:110%}.cm-header-5,.cm-header-6{font-size:100%;font-style:italic}</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="MIMIC-II-Demo-DATA">MIMIC II Demo DATA<a class="anchor-link" href="#MIMIC-II-Demo-DATA">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The MIMIC II database demo is a subset of 4,000 (of over 32,000) patients from the MIMIC II database. These data are located here: <a href="http://physionet.org/mimic2/demo/">http://physionet.org/mimic2/demo/</a>.</p>
+<p>No living patients are included in the demo subset (although many of these patients lived for up to several years followingi their ICU admissions documented in this data set). Although these data are exempt from HIPAA requirements for protecting health information of living individuals, the data have been very carefully deidentified, and we have removed free-text notes and reports as a further measure to reduce the possibility of disclosing information that might be used to identify these patients.</p>
+<p>The data can be obtained as a disk image that includes Ubuntu 10.04, PostgreSQL 8.4.8, pgadmin3 1.10.2, and MIMIC II v2.6 with data for 4000 patients. This disk image can then be loaded via <a href="https://www.virtualbox.org/">Virtual Box.</a> Note: Make sure to select the install option when booting the first time in virtualbox. And the next time you boot, boot from disk.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="PhysioNet/Computing-in-Cardiology-Challenge-2012-Data">PhysioNet/Computing in Cardiology Challenge 2012 Data<a class="anchor-link" href="#PhysioNet/Computing-in-Cardiology-Challenge-2012-Data">¶</a></h1><p>There is also data available for predicting mortality of ICU patients. It was used as a data challenge in 2012 and is publicly available <a href="http://physionet.org/challenge/2012/">here</a>. It comes in text files and is already somewhat cleaned up, so it should be easy to get started with. I will not discuss these data in this post, but wanted to make a mention of it.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Moving-the-data-onto-your-machine">Moving the data onto your machine<a class="anchor-link" href="#Moving-the-data-onto-your-machine">¶</a></h1><p>If you are anything like me, then you prefer to work on your own machine as opposed to a VM. So lets get the data out of the VM and onto our machines.</p>
+<ol>
+<li>Open up the VM terminal and type "pg_dump --no-owner MIMIC2 > psql_dump_mimic2.sql" After this runs, you will have a file called "psql_dump_mimic2.sql"</li>
+<li>Follow <a href="https://www.youtube.com/watch?v=TcrfrVNNGMU">this video</a> on how to set up shared folders. Once you have a shared folder, copy psql_dump_mimic2.sql into that folder. Now you have access to this file on your actual machine.</li>
+<li><a href="http://www.postgresql.org/download/">Install PostgreSQL</a> onto your machine. If you are on OS X, I would recommend <a href="http://postgresapp.com/">Postgres.app</a></li>
+<li>Create a new postgres database by typing "psql" in the terminal and then "create database mimic2;"</li>
+<li>Restore the dump file. In the terminal type "psql mimic2 < psql_dump_mimic2.sql" This will restore the dump file; it takes some time.</li>
+<li>Test that everything worked by running "psql mimic2" and then "select tablename from pg_catalog.pg_tables where schemaname='mimic2v26'" you should see the list of tables.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Reading-the-data-from-PostgreSQL">Reading the data from PostgreSQL<a class="anchor-link" href="#Reading-the-data-from-PostgreSQL">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you are new to PostgreSQL you can check out this <a href="http://www.postgresql.org/docs/8.0/static/tutorial.html">tutorial</a>. The fastest way to query the data is by typing "psql mimic2" in the terminal. You can then query the data. For example you can type "select * from mimic2v26.icustay_detail;" But I like doing my data work in Python, so I will show you how to use python to extract data from a PostgreSQL database.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="PostgreSQL-and-Python">PostgreSQL and Python<a class="anchor-link" href="#PostgreSQL-and-Python">¶</a></h1><p>If you are new to Python I would recommend installing the <a href="http://continuum.io/downloads">Anaconda distribution</a>. It comes with almost all the libraries you will need for scientific computing. Once installed, type "pip install psycopg2" to get the library to read the data from PostgreSQL. If you run into an "image not found" error when loading the library into Python, check out <a href="http://stackoverflow.com/questions/16407995/psycopg2-image-not-found">this post</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Python has a <a href="http://pandas.pydata.org/">Pandas</a> library that is great for working with data. This library also has an SQL interface, so you can query our PostgreSQL data and it will load into a Pandas data frame. This is a great format to start working with our data in Python.</p>
+<p>In the next few steps, I am going to load in some data and do some quick investigations. I will be roughly following the <a href="http://criticaldata.mit.edu/data-science-primer/">MIMIC Data Science Primer.</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Imports-and-Settings">Imports and Settings<a class="anchor-link" href="#Imports-and-Settings">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">import</span> <span class="nn">pandas.io.sql</span> <span class="k">as</span> <span class="nn">psql</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span> <span class="c1">#now division always returns a floating point number</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">import</span> <span class="nn">brewer2mpl</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">metrics</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Get-Data">Get Data<a class="anchor-link" href="#Get-Data">¶</a></h3><p>As you can see below, we first start by connecting to our database.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">db</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">"dbname='mimic2' host='localhost'"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can then get a list of all the tables in our database</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">tables</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""select tablename from pg_catalog.pg_tables</span>
+<span class="s2">                        where schemaname='mimic2v26';"""</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+<span class="n">tables</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>tablename</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>         chartevents</td>
+</tr>
+<tr>
+<th>1</th>
+<td>  comorbidity_scores</td>
+</tr>
+<tr>
+<th>2</th>
+<td> d_chartitems_detail</td>
+</tr>
+<tr>
+<th>3</th>
+<td>        d_codeditems</td>
+</tr>
+<tr>
+<th>4</th>
+<td>    d_parammap_items</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are 38 tables</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">tables</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(38, 1)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also create a table that shows us which tables have which variables. You can see that we have a total of 255 variables.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#lets get information on the tables and the columns</span>
+<span class="n">col_info</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""SELECT table_name, column_name</span>
+<span class="s2">                            FROM information_schema.columns</span>
+<span class="s2">                            WHERE table_schema = 'mimic2v26';"""</span><span class="p">,</span> <span class="n">con</span> <span class="o">=</span> <span class="n">db</span><span class="p">)</span>
+<span class="n">col_info</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"YES"</span>
+<span class="n">col_info</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">col_info</span> <span class="o">=</span> <span class="n">col_info</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'table_name'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'column_name'</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s1">'value'</span><span class="p">)</span>
+<span class="n">col_info</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(38, 255)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is useful because now we can see which tables have certain columns. For example, which tables have a subject_id?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">col_info</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="n">col_info</span><span class="o">.</span><span class="n">subject_id</span> <span class="o">==</span> <span class="s1">'YES'</span><span class="p">][</span><span class="s1">'subject_id'</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>table_name
+a_chartdurations      YES
+a_iodurations         YES
+a_meddurations        YES
+additives             YES
+admissions            YES
+censusevents          YES
+chartevents           YES
+comorbidity_scores    YES
+d_patients            YES
+deliveries            YES
+demographic_detail    YES
+demographicevents     YES
+drgevents             YES
+icd9                  YES
+icustay_days          YES
+icustay_detail        YES
+icustayevents         YES
+ioevents              YES
+labevents             YES
+medevents             YES
+microbiologyevents    YES
+noteevents            YES
+poe_order             YES
+procedureevents       YES
+totalbalevents        YES
+Name: subject_id, dtype: object</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Or what variables are in a certain table? For example, the icustay_detail table.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [154]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">col_info</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s1">'icustay_detail'</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">col_info</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="s1">'icustay_detail'</span><span class="p">,:]</span> <span class="o">==</span> <span class="s2">"YES"</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[154]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>column_name
+dob                          YES
+dod                          YES
+expire_flg                   YES
+gender                       YES
+hadm_id                      YES
+height                       YES
+hospital_admit_dt            YES
+hospital_disch_dt            YES
+hospital_expire_flg          YES
+hospital_first_flg           YES
+hospital_last_flg            YES
+hospital_los                 YES
+hospital_seq                 YES
+hospital_total_num           YES
+icustay_admit_age            YES
+icustay_age_group            YES
+icustay_expire_flg           YES
+icustay_first_careunit       YES
+icustay_first_flg            YES
+icustay_first_service        YES
+icustay_id                   YES
+icustay_intime               YES
+icustay_last_careunit        YES
+icustay_last_flg             YES
+icustay_last_service         YES
+icustay_los                  YES
+icustay_outtime              YES
+icustay_seq                  YES
+icustay_total_num            YES
+matched_waveforms_num        YES
+sapsi_first                  YES
+sapsi_max                    YES
+sapsi_min                    YES
+sofa_first                   YES
+sofa_max                     YES
+sofa_min                     YES
+subject_icustay_seq          YES
+subject_icustay_total_num    YES
+subject_id                   YES
+weight_first                 YES
+weight_max                   YES
+weight_min                   YES
+Name: icustay_detail, dtype: object</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have connected to the database, we can query it just as you would in the command line. The great thing, though, is that now our data is returned in a Pandas data frame that we can work with in Python.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [126]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""select subject_id, hadm_id, icustay_admit_age,</span>
+<span class="s2">                            weight_min, weight_max, gender,</span>
+<span class="s2">                            icustay_first_careunit,</span>
+<span class="s2">                            icustay_last_careunit,</span>
+<span class="s2">                            hospital_los, expire_flg,</span>
+<span class="s2">                            sapsi_max, sapsi_min,</span>
+<span class="s2">                            date_part('day',dod - icustay_intime) as survival_days</span>
+<span class="s2">                        from mimic2v26.icustay_detail</span>
+<span class="s2">                        where icustay_age_group = 'adult'</span>
+<span class="s2">                            and icustay_los > 24*60</span>
+<span class="s2">                            and subject_icustay_seq = 1;"""</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here is a look at the first 3 rows of our data. Cool :)
+And the dimensions</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [127]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>subject_id</th>
+<th>hadm_id</th>
+<th>icustay_admit_age</th>
+<th>weight_min</th>
+<th>weight_max</th>
+<th>gender</th>
+<th>icustay_first_careunit</th>
+<th>icustay_last_careunit</th>
+<th>hospital_los</th>
+<th>expire_flg</th>
+<th>sapsi_max</th>
+<th>sapsi_min</th>
+<th>survival_days</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> 26</td>
+<td> 15067</td>
+<td> 72.00637</td>
+<td>  NaN</td>
+<td>  NaN</td>
+<td> M</td>
+<td>  CCU</td>
+<td>  CCU</td>
+<td> 10080</td>
+<td> Y</td>
+<td>  6</td>
+<td>  5</td>
+<td>  658</td>
+</tr>
+<tr>
+<th>1</th>
+<td> 37</td>
+<td> 18052</td>
+<td> 68.93134</td>
+<td>  NaN</td>
+<td>  NaN</td>
+<td> M</td>
+<td> MICU</td>
+<td> MICU</td>
+<td>  7200</td>
+<td> Y</td>
+<td> 11</td>
+<td> 11</td>
+<td>  501</td>
+</tr>
+<tr>
+<th>2</th>
+<td> 78</td>
+<td> 15161</td>
+<td> 48.62681</td>
+<td> 72.4</td>
+<td> 72.4</td>
+<td> M</td>
+<td> MICU</td>
+<td> MICU</td>
+<td>  4320</td>
+<td> Y</td>
+<td> 14</td>
+<td> 11</td>
+<td> 1082</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(3206, 12)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Clean-Data">Clean Data<a class="anchor-link" href="#Clean-Data">¶</a></h3><p>Remove rows with any missing data</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(2698, 12)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explore-Data">Explore Data<a class="anchor-link" href="#Explore-Data">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Plots">Plots<a class="anchor-link" href="#Plots">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Data visualization is a big part of data science, so I try and make my plots look good. The code below modifies some of the matplotlib defaults to make the plots look a bit cleaner. Source: <a href="http://cs109.github.io/2014/">Harvard CS 109 course</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1"># Set up some better defaults for matplotlib</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">rcParams</span>
+
+<span class="c1">#colorbrewer2 Dark2 qualitative color table</span>
+<span class="n">dark2_colors</span> <span class="o">=</span> <span class="n">brewer2mpl</span><span class="o">.</span><span class="n">get_map</span><span class="p">(</span><span class="s1">'Dark2'</span><span class="p">,</span> <span class="s1">'Qualitative'</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">mpl_colors</span>
+
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'figure.dpi'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.color_cycle'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dark2_colors</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'lines.linewidth'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'axes.facecolor'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'white'</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.size'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'patch.edgecolor'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'white'</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'patch.facecolor'</span><span class="p">]</span> <span class="o">=</span> <span class="n">dark2_colors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">'font.family'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'StixGeneral'</span>
+
+
+<span class="k">def</span> <span class="nf">remove_border</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Minimize chartjunk by stripping out unnecesasry plot borders and axis ticks</span>
+<span class="sd">    </span>
+<span class="sd">    The top/right/left/bottom keywords toggle whether the corresponding plot border is drawn</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span> <span class="ow">or</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">'top'</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">'right'</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">'left'</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="p">[</span><span class="s1">'bottom'</span><span class="p">]</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="n">bottom</span><span class="p">)</span>
+    
+    <span class="c1">#turn off all ticks</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">'none'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticks_position</span><span class="p">(</span><span class="s1">'none'</span><span class="p">)</span>
+    
+    <span class="c1">#now re-enable visibles</span>
+    <span class="k">if</span> <span class="n">top</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_top</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">bottom</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">tick_bottom</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">left</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_left</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">tick_right</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lets look at the differences between males and females for age and weight</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [35]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'gender'</span><span class="p">,</span><span class="s1">'icustay_admit_age'</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'gender'</span><span class="p">)</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">return_type</span><span class="o">=</span><span class="s1">'axes'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmUAAAF0CAYAAABi7U6EAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X+0pXVd6PH3h5+BPxo1lJqBdVRsZiLtUDbrmqw7Gxas
+MLkLMn+s0HK4XcoQy7yu4OoSxm51iXJpqWh5r0AZ1Q2vBkKYKJusK5HWwR+BpHAYgZWB3hkUh2EG
+PveP5zkze7bnxzP77D3f5zzn/Vprr9nPj7Ofj+OZD5/9fT7P9xuZiSRJkso6pHQAkiRJsiiTJElq
+BYsySZKkFrAokyRJagGLMkmSpBawKJMkSWoBizIddBHxqoj4QkQ8ERFfjoi/rF8fiYjP1/ufWjpO
+SToQEfFTEXF9ncNuX+S8p0TEt+rzrouIFx/MONVeh5UOQKtPZv5FRDwdeC/w25l51eDxiPhzIIoE
+J0kjyswbIuJe4CXAD0fEf8zMv53n1NdQ/fc3gQsz818OZpxqL0fKVMrO+s/5Zi/+M+DxgxiLJI3L
+I8AM1RfLX1ngnFcDN9TnfPsgxaUVwJEytU5m/lXpGCRpRAncDnwLOCsijsvMr80djIgXAV8EjiwU
+n1rMkTKVtt9tyoi4vFQgkjRG7wYOBX55aP8vApdji4bmYVGm0v5rRPx1RNwYEfcAv1Q6IElahrli
+6yPAA8B5EXEkQEQ8DTguMz9fKji1m0WZSvu9zHxJZp4B/CDw6dIBSdJyZebjVCNizwDOqXdvAT5Y
+Kia1n0WZWiMzdwPXl45Dksbkj4BdwAX19k8Df1kuHLWdRZna5l2lA5CkccjMh4C/AE6KiLcBf19/
++ZTmZVGmVjFhSVrhgv2b+N9d//k24P0HPxytJI2mxIiI7wGOyMyHJxyPVo+n1H8+qWgUkjRe30fV
+RwZAZn4uIm4FvpmZ9w6cN7dqyVOQaouOlEVlC3AX8OMD+zdHxO0R8XBEfDwijhs4tjYiLo+I10XE
+VRFx4sSi14oUES8DfoFqPp/zIuJVhUOSpGWLiJcAlwKnRsRbImJNfejdVE3/RMSTI+JNwKlUOfCy
+eu4yicicb0L1+mDEMVQT3G0DTsvMT0XEM4HfrV9rgT8E/jUzT4+IAD5LtWzETRGxkapx+3n1kyiS
+JEmax6IjZZn5YGbeN7T7VOCCzPxiZn4c2AqcXB87DdgI9OufvwPYDZw9xpglSZI654Ab/TPzzzPz
+WwO7vg7M3Sd/MXB3Zu4ZOH4XVSEnSZKkBYzj6csfZd8TJccCww8D7ADWjeE6kiRJnbWsBckj4knA
+89k3W/EeqtuVg+Yt/CJi4WY2SatWZnZqTUBznaRhC+W5ZRVlwJuBN2TmE/X2A+zrL5uzBphdIKhl
+Xl5dsHXrVrZu3Vo6DLVA9axQ95jrZJ7TnMXy3Mi3LyPiPOBDmflgvX04cDPwnKFT11M3/kuSJGl+
+SxZlETF3Tgzs2wLsBA6PiA0RsRk4JzM/A9wbEafU520AjgauG3fg6o7Z2dnSIUjSRJnn1MSity/r
+ecrOo5rg7pyIuB+YAj4AHDpwalKNiAGcBVxcz1G2CTgzM3eOOW51yPT0dOkQJGmizHNqYtHJYyd6
+4Yi0z0LSoIjoZKO/uU7SnMXynAuSS5IktYBFmYrr9/ulQ5CkiTLPqQmLMkmSpBawp0xSa9hTJqnr
+7CmTJElqOYsyFWevhaSuM8+pCYsySZKkFrCnTFJr2FMmqevsKZMkSWo5izIVZ6+FpK4zz6kJizJJ
+kqQWsKdMUmvYUyap6+wpkyRJajmLMhVnr4WkrjPPqQmLMkmSpBawp0xSa9hTJqnr7CmTJElqOYsy
+FWevhaSuM8+pCYsySZKkFrCnTFJr2FMmqevsKZMkSWo5izIVZ6+FpK4zz6kJizJJkqQWsKdMUmvY
+Uyap6+wpkyRJajmLMhVnr4WkrjPPqQmLMkmSpBawp0xSa9hTJqnr7CmTJElqOYsyFWevhaSuM8+p
+CYsySZKkFrCnTFJr2FMmqevsKZMkSWo5izJNRERM5CVJK5E9ZWrCokySJKkF7CmT1Br2lEnqOnvK
+1FrrrriIdVdcVDoMSZKKsyhTcbvu3FY6BEmaKHvK1IRFmSRJUgtYlKm4IzccXzoESZqoXq9XOgSt
+ABZlkiRJLWBRpuLsKZPUdfaUqYnDmpwUEd8DHJGZD084Hq0y9517qclKkiSWmKcsqinUXwv8BnBu
+Zn6y3r8WeCvweeBFwGWZ+aWljg19tnP3SNqP85RJ6rrF8txSRdkxwJHANuC0zPxUXah9FrgwM2+K
+iI3A9cAJQC5w7HmZ+fjQZ5uoJO3HokxS1408eWxmPpiZ9w3tPg3YCPTrc+4AdgM/vcixs0cPX13n
+7UtJXWeeUxOjNPq/GLg7M/cM7LsLOBX4CeCeBY5JkiRpAY0a/YccCww3/G8H1lEVeTuGju2oj0nz
+cv4eSV1nnlMToxRle6huSQ46BIhFjs1ry5YtTE1NAbBmzRqmp6f3/uLODfW63e3t19xzIwAfevYZ
+rYjH7YO7Pfd+dnaWLjPXdXe7arMer5tvvrk1//vcXv72zMwM27dvB1gy1y3a6L/3pIgn2Nfo/xbg
+lZk5PXD8eqqHAb42z7EbgNnMPH/oM21+FeuuuIhdd27jwd+5unQoagEb/bXSTKIo8/el20Zu9F9A
+H3jO0L4NwM31a/jY+vpnJEnqlMxc8rX2gxfyfb/+s43OtSBb3ZYsyiJi7py5qu4zwL0RcUp9fAPw
+JOA64NZ5jh1dH5Pm5dqXkrrOPKcmFu0pq+cpO49q/rFzIuL+zLwzIs4CLq7nIdsEvDQzd9Y/M3zs
+zLljkiStNvede2npELRCNOopm8iF7bMQ9pRpf/aUqav6/f7e5m+tbovluVGevpTGxrUvJUmqOFIm
+qTUcKZPUdeN++lKSJEljZlGm4rx9KanrzHNqwp4ySZImaO8DTTb6awmOlKk4n0iS1HXOU6YmLMpU
+1LorLmLdFReVDkOSpOIsylTcrju3lQ5BkibKPKcmLMokSZJawKJMxdlrIanrzHNqwqcvJUmaINe+
+VFOOlKk4ey0kdZ3zlKkJR8pUlGtfSpJUce1LSa3h2peSus61LyVJklrOokzFeftSUteZ59SEPWWS
+JE2Qa1+qKUfKVJxrX0rqOucpUxMWZSrKtS8lSapYlKk45ymT1HXmOTVhUSZJktQCFmUqzl4LSV1n
+nlMTPn0pSdIEufalmnKkTMXZayGp65ynTE04UqaiXPtSkqSKa19Kag3XvpTUda59KUmS1HIWZSrO
+25eSus48pybsKZMkaYJc+1JNOVKm4lz7UlLXOU+ZmrAoU1GufSlJUsWiTMU5T5mkrjPPqQmLMkmS
+pBawKFNx9lpI6jrznJrw6UtJkibItS/VlDP664D9/Ceu4FP3fXlsn7frzm1j/RZ56rr1/PHp547t
+83TwOKO/uqrf7/ukuQBn9NeYjbMgm4S2xydJ0ny8famRtXFI3uk1JLWRo2RqwpEySZKkFrAoU3Gu
+CSep68xzasLbl5IkTZBrX6opR8pUnL0WkrrOecrUhEWZJElSC4xclEXEyRHxGxHxxoj4UESsr/ev
+jYjLI+J1EXFVRJw4vnDVRfZaSOo6175UEyP1lEXEocCVwA9m5hMRsRl4D3A6cC1wYWbeFBG3ANdH
+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
+VyjGcbxNKg8AAAAASUVORK5CYII=
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">p</span> <span class="o">=</span> <span class="n">data</span><span class="p">[[</span><span class="s1">'gender'</span><span class="p">,</span><span class="s1">'weight_max'</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'gender'</span><span class="p">)</span><span class="o">.</span><span class="n">boxplot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Tables">Tables<a class="anchor-link" href="#Tables">¶</a></h4><p>Lets look at some different counts across gender</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#number of men and women</span>
+<span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>M    1453
+F    1245
+dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#counts by ICU</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">icustay_first_careunit</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>gender</th>
+<th>F</th>
+<th>M</th>
+</tr>
+<tr>
+<th>icustay_first_careunit</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>CCU</th>
+<td> 288</td>
+<td> 296</td>
+</tr>
+<tr>
+<th>CSRU</th>
+<td> 309</td>
+<td> 455</td>
+</tr>
+<tr>
+<th>FICU</th>
+<td> 132</td>
+<td> 177</td>
+</tr>
+<tr>
+<th>MICU</th>
+<td> 478</td>
+<td> 479</td>
+</tr>
+<tr>
+<th>SICU</th>
+<td>  38</td>
+<td>  46</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#percentage by ICU</span>
+<span class="n">perct_icu</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">icustay_first_careunit</span><span class="p">,</span> 
+            <span class="n">data</span><span class="o">.</span><span class="n">gender</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span>
+                               <span class="n">r</span><span class="o">/</span><span class="n">r</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">perct_icu</span><span class="p">[</span><span class="s1">'diff'</span><span class="p">]</span> <span class="o">=</span> <span class="n">perct_icu</span><span class="o">.</span><span class="n">M</span> <span class="o">-</span> <span class="n">perct_icu</span><span class="o">.</span><span class="n">F</span>
+<span class="n">perct_icu</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>gender</th>
+<th>F</th>
+<th>M</th>
+<th>diff</th>
+</tr>
+<tr>
+<th>icustay_first_careunit</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>CCU</th>
+<td> 0.231325</td>
+<td> 0.203716</td>
+<td>-0.027609</td>
+</tr>
+<tr>
+<th>CSRU</th>
+<td> 0.248193</td>
+<td> 0.313145</td>
+<td> 0.064952</td>
+</tr>
+<tr>
+<th>FICU</th>
+<td> 0.106024</td>
+<td> 0.121817</td>
+<td> 0.015793</td>
+</tr>
+<tr>
+<th>MICU</th>
+<td> 0.383936</td>
+<td> 0.329663</td>
+<td>-0.054273</td>
+</tr>
+<tr>
+<th>SICU</th>
+<td> 0.030522</td>
+<td> 0.031659</td>
+<td> 0.001137</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [223]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#max sapsi score difference</span>
+<span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'gender'</span><span class="p">)</span><span class="o">.</span><span class="n">sapsi_max</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[223]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>gender
+F         17.419561
+M         16.942875
+Name: sapsi_max, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [224]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#average admit age</span>
+<span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'gender'</span><span class="p">)</span><span class="o">.</span><span class="n">icustay_admit_age</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[224]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>gender
+F         73.220369
+M         69.947374
+Name: icustay_admit_age, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [225]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="c1">#average max weight</span>
+<span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'gender'</span><span class="p">)</span><span class="o">.</span><span class="n">weight_max</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[225]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>gender
+F         74.993463
+M         87.143591
+Name: weight_max, dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="MIMIC-Cookbook">MIMIC Cookbook<a class="anchor-link" href="#MIMIC-Cookbook">¶</a></h3><p>There exists a MIMIC cookbook which provides SQL code to calculate various measures such as the Elixhauser scores. Fortunately, they have a <a href="https://github.com/MIT-LCP/mimic-cookbook">github repository</a> so we can easily use this code. If you are new to git and github check out <a href="https://guides.github.com/">these tutorials</a> or do some google searching. Lets go ahead and try out the PostgreSQL code for Elixhauser scores. Note: The code on github doesn't seem to always work out of the box. I had to make a few changes to the substring and to_number functions.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [44]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">elixhauser</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">WITH icd9list AS (</span>
+<span class="s2">SELECT adm.subject_id,</span>
+<span class="s2">       adm.hadm_id,</span>
+<span class="s2">       code,</span>
+<span class="s2">       sequence,</span>
+<span class="s2">       substring(code from '^\D') as icd9_alpha,</span>
+<span class="s2">       to_number(substring(code from '\d+$|\d+\.\d+$'), '999999999') as icd9_numeric</span>
+<span class="s2">  FROM mimic2v26.admissions adm,</span>
+<span class="s2">       mimic2v26.icd9 icd</span>
+<span class="s2"> WHERE adm.hadm_id = icd.hadm_id</span>
+<span class="s2">   --AND adm.hadm_id < 100</span>
+<span class="s2">  )</span>
+<span class="s2">--SELECT * FROM icd9list;</span>
+<span class="s2">, drglist AS (</span>
+<span class="s2">SELECT adm.subject_id,</span>
+<span class="s2">       adm.hadm_id,</span>
+<span class="s2">       to_number(ci.code, '999999999') AS codenum,</span>
+<span class="s2">       ci.description</span>
+<span class="s2">  FROM mimic2v26.admissions adm,</span>
+<span class="s2">       mimic2v26.drgevents drg,</span>
+<span class="s2">       mimic2v26.d_codeditems ci</span>
+<span class="s2"> WHERE adm.hadm_id = drg.hadm_id</span>
+<span class="s2">   AND drg.itemid = ci.itemid</span>
+<span class="s2">   AND ci.type='HFCA_DRG'</span>
+<span class="s2">  )</span>
+<span class="s2">--SELECT * FROM drglist;</span>
+<span class="s2">, drg_category AS (</span>
+<span class="s2">SELECT subject_id,</span>
+<span class="s2">       hadm_id,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 103 AND drglist.codenum <= 108)</span>
+<span class="s2">      OR (drglist.codenum >= 110 AND drglist.codenum <= 112)</span>
+<span class="s2">      OR (drglist.codenum >= 115 AND drglist.codenum <= 118)</span>
+<span class="s2">      OR (drglist.codenum >= 120 AND drglist.codenum <= 127)</span>
+<span class="s2">      OR drglist.codenum = 129</span>
+<span class="s2">      OR (drglist.codenum >= 132 AND drglist.codenum <= 133)</span>
+<span class="s2">      OR (drglist.codenum >= 135 AND drglist.codenum <= 143)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS cardiac,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 302 AND drglist.codenum <= 305)</span>
+<span class="s2">      OR (drglist.codenum >= 315 AND drglist.codenum <= 333)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS renal,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 199 AND drglist.codenum <= 202)</span>
+<span class="s2">      OR (drglist.codenum >= 205 AND drglist.codenum <= 208)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS liver,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 400 AND drglist.codenum <= 414)</span>
+<span class="s2">      OR drglist.codenum = 473</span>
+<span class="s2">      OR drglist.codenum = 492</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS leukemia_lymphoma,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 10</span>
+<span class="s2">      OR drglist.codenum = 11</span>
+<span class="s2">      OR drglist.codenum = 64</span>
+<span class="s2">      OR drglist.codenum = 82</span>
+<span class="s2">      OR drglist.codenum = 172</span>
+<span class="s2">      OR drglist.codenum = 173</span>
+<span class="s2">      OR drglist.codenum = 199</span>
+<span class="s2">      OR drglist.codenum = 203</span>
+<span class="s2">      OR drglist.codenum = 239</span>
+<span class="s2">      OR (drglist.codenum >= 257 AND drglist.codenum <= 260)</span>
+<span class="s2">      OR drglist.codenum = 274</span>
+<span class="s2">      OR drglist.codenum = 275</span>
+<span class="s2">      OR drglist.codenum = 303</span>
+<span class="s2">      OR drglist.codenum = 318</span>
+<span class="s2">      OR drglist.codenum = 319</span>
+<span class="s2">      OR drglist.codenum = 338</span>
+<span class="s2">      OR drglist.codenum = 344</span>
+<span class="s2">      OR drglist.codenum = 346</span>
+<span class="s2">      OR drglist.codenum = 347</span>
+<span class="s2">      OR drglist.codenum = 354</span>
+<span class="s2">      OR drglist.codenum = 355</span>
+<span class="s2">      OR drglist.codenum = 357</span>
+<span class="s2">      OR drglist.codenum = 363</span>
+<span class="s2">      OR drglist.codenum = 366</span>
+<span class="s2">      OR drglist.codenum = 367</span>
+<span class="s2">      OR (drglist.codenum >= 406 AND drglist.codenum <= 414)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS cancer,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 88</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS copd,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 130 AND drglist.codenum <= 131)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS peripheral_vascular,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 134</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS hypertension,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 14 AND drglist.codenum <= 17)</span>
+<span class="s2">      OR drglist.codenum=5</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS cerebrovascular,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 1 AND drglist.codenum <= 35)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS nervous_system,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 96 AND drglist.codenum <= 98)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS asthma,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 294 AND drglist.codenum <= 295)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS diabetes,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 290</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS thyroid,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 300 AND drglist.codenum <= 301)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS endocrine,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 302</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS kidney_transplant,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 316 AND drglist.codenum <= 317)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS renal_failure_dialysis,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 174 AND drglist.codenum <= 178)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS gi_hemorrhage_ulcer,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 488 AND drglist.codenum <= 490)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS hiv,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 240 AND drglist.codenum <= 241)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS connective_tissue,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 397</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS coagulation,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 288</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS obesity_procedure,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 396 AND drglist.codenum <= 298)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS nutrition_metabolic,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 395 AND drglist.codenum <= 396)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS anemia,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN (drglist.codenum >= 433 AND drglist.codenum <= 437)</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS alcohol_drug,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 430</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS psychoses,</span>
+<span class="s2">    CASE</span>
+<span class="s2">      WHEN drglist.codenum = 426</span>
+<span class="s2">      THEN 1</span>
+<span class="s2">      ELSE 0</span>
+<span class="s2">    END AS depression</span>
+<span class="s2">  FROM drglist</span>
+<span class="s2">  )</span>
+<span class="s2">--SELECT * FROM drg_category;  </span>
+<span class="s2">, elixhauser AS (</span>
+<span class="s2">SELECT icd.subject_id,</span>
+<span class="s2">       icd.hadm_id,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 398.91</span>
+<span class="s2">        OR icd.icd9_numeric = 402.11</span>
+<span class="s2">        OR icd.icd9_numeric = 402.91</span>
+<span class="s2">        OR icd.icd9_numeric = 404.11</span>
+<span class="s2">        OR icd.icd9_numeric = 404.13</span>
+<span class="s2">        OR icd.icd9_numeric = 404.91</span>
+<span class="s2">        OR icd.icd9_numeric = 404.93</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 428 AND 428.9)</span>
+<span class="s2">        AND drg.cardiac = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS congestive_heart_failure,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 426.1</span>
+<span class="s2">        OR icd.icd9_numeric = 426.11</span>
+<span class="s2">        OR icd.icd9_numeric = 426.13</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 426.2 AND 426.53</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 426.6 AND 426.89</span>
+<span class="s2">        OR icd.icd9_numeric = 427</span>
+<span class="s2">        OR icd.icd9_numeric = 427.2</span>
+<span class="s2">        OR icd.icd9_numeric = 427.31</span>
+<span class="s2">        OR icd.icd9_numeric = 427.6</span>
+<span class="s2">        OR icd.icd9_numeric = 427.9</span>
+<span class="s2">        OR icd.icd9_numeric = 785))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND (icd.icd9_numeric = 45</span>
+<span class="s2">        OR icd.icd9_numeric = 53.3)))</span>
+<span class="s2">        AND drg.cardiac = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS cardiac_arrhythmias,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 93.2 AND 93.24</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 394 AND 397.1</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 424 AND 424.91</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 746.3 AND 746.6))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND (icd.icd9_numeric = 42.2</span>
+<span class="s2">        OR icd.icd9_numeric = 43.3)))</span>
+<span class="s2">        AND drg.cardiac = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS valvular_disease,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 416 AND 416.9</span>
+<span class="s2">        OR icd.icd9_numeric = 417.9)</span>
+<span class="s2">        AND (drg.cardiac = 0 AND drg.copd = 0)</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS pulmonary_circulation,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 440 AND 440.9</span>
+<span class="s2">        OR icd.icd9_numeric = 441.2</span>
+<span class="s2">        OR icd.icd9_numeric = 441.4</span>
+<span class="s2">        OR icd.icd9_numeric = 441.7</span>
+<span class="s2">        OR icd.icd9_numeric = 441.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 443.1 AND 443.9</span>
+<span class="s2">        OR icd.icd9_numeric = 447.1</span>
+<span class="s2">        OR icd.icd9_numeric = 557.1</span>
+<span class="s2">        OR icd.icd9_numeric = 557.9))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND icd.icd9_numeric = 43.4))</span>
+<span class="s2">        AND drg.peripheral_vascular = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS peripheral_vascular,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 401.1</span>
+<span class="s2">        OR icd.icd9_numeric = 401.9</span>
+<span class="s2">        OR icd.icd9_numeric = 402.1</span>
+<span class="s2">        OR icd.icd9_numeric = 402.9</span>
+<span class="s2">        OR icd.icd9_numeric = 404.1</span>
+<span class="s2">        OR icd.icd9_numeric = 404.9</span>
+<span class="s2">        OR icd.icd9_numeric = 405.11</span>
+<span class="s2">        OR icd.icd9_numeric = 405.19</span>
+<span class="s2">        OR icd.icd9_numeric = 405.91</span>
+<span class="s2">        OR icd.icd9_numeric = 405.99)</span>
+<span class="s2">        AND (drg.hypertension = 0 AND drg.cardiac = 0 AND drg.renal = 0)</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS hypertension,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 342 AND 342.12</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 342.9 AND 344.9)</span>
+<span class="s2">        AND drg.cerebrovascular = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS paralysis,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 331.9</span>
+<span class="s2">        OR icd.icd9_numeric = 332</span>
+<span class="s2">        OR icd.icd9_numeric = 333.4</span>
+<span class="s2">        OR icd.icd9_numeric = 333.5</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 334 AND 335.9</span>
+<span class="s2">        OR icd.icd9_numeric = 340</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 341.1 AND 341.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 345 AND 345.11</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 345.4 AND 345.51</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 345.8 AND 345.91</span>
+<span class="s2">        OR icd.icd9_numeric = 348.1</span>
+<span class="s2">        OR icd.icd9_numeric = 348.3</span>
+<span class="s2">        OR icd.icd9_numeric = 780.3</span>
+<span class="s2">        OR icd.icd9_numeric = 784.3)</span>
+<span class="s2">        AND drg.nervous_system = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS other_neurological,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 490 AND 492.8</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 493 AND 493.91</span>
+<span class="s2">        OR icd.icd9_numeric = 494</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 495 AND 505</span>
+<span class="s2">        OR icd.icd9_numeric = 506.4)</span>
+<span class="s2">        AND (drg.copd = 0 AND drg.asthma = 0)</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS chronic_pulmonary,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric BETWEEN 250 AND 250.33        </span>
+<span class="s2">        AND drg.diabetes = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS diabetes_uncomplicated,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 250.4 AND 250.73</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 250.9 AND 250.93)</span>
+<span class="s2">        AND drg.diabetes = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS diabetes_complicated,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 243 AND 244.2</span>
+<span class="s2">        OR icd.icd9_numeric = 244.8</span>
+<span class="s2">        OR icd.icd9_numeric = 244.9)</span>
+<span class="s2">        AND (drg.thyroid = 0 AND drg.endocrine = 0)</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS hypothyroidism,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 403.11 </span>
+<span class="s2">        OR icd.icd9_numeric = 403.91</span>
+<span class="s2">        OR icd.icd9_numeric = 404.12</span>
+<span class="s2">        OR icd.icd9_numeric = 404.92</span>
+<span class="s2">        OR icd.icd9_numeric = 585</span>
+<span class="s2">        OR icd.icd9_numeric = 586))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND (icd.icd9_numeric = 42</span>
+<span class="s2">        OR icd.icd9_numeric = 45.1</span>
+<span class="s2">        OR icd.icd9_numeric = 56</span>
+<span class="s2">        OR icd.icd9_numeric = 56.8)))</span>
+<span class="s2">        AND (drg.kidney_transplant = 0 AND renal_failure_dialysis = 0)</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS renal_failure,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 70.32</span>
+<span class="s2">        OR icd.icd9_numeric = 70.33</span>
+<span class="s2">        OR icd.icd9_numeric = 70.54</span>
+<span class="s2">        OR icd.icd9_numeric = 456</span>
+<span class="s2">        OR icd.icd9_numeric = 456.1</span>
+<span class="s2">        OR icd.icd9_numeric = 456.2</span>
+<span class="s2">        OR icd.icd9_numeric = 456.21</span>
+<span class="s2">        OR icd.icd9_numeric = 571</span>
+<span class="s2">        OR icd.icd9_numeric = 571.2</span>
+<span class="s2">        OR icd.icd9_numeric = 571.3</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 571.4 AND 571.49</span>
+<span class="s2">        OR icd.icd9_numeric = 571.5</span>
+<span class="s2">        OR icd.icd9_numeric = 571.6</span>
+<span class="s2">        OR icd.icd9_numeric = 571.8</span>
+<span class="s2">        OR icd.icd9_numeric = 571.9</span>
+<span class="s2">        OR icd.icd9_numeric = 572.3</span>
+<span class="s2">        OR icd.icd9_numeric = 572.8))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND icd.icd9_numeric = 42.7))</span>
+<span class="s2">        AND drg.liver = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS liver_disease,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 531.7</span>
+<span class="s2">        OR icd.icd9_numeric = 531.9</span>
+<span class="s2">        OR icd.icd9_numeric = 532.7</span>
+<span class="s2">        OR icd.icd9_numeric = 532.9</span>
+<span class="s2">        OR icd.icd9_numeric = 533.7</span>
+<span class="s2">        OR icd.icd9_numeric = 533.9</span>
+<span class="s2">        OR icd.icd9_numeric = 534.7</span>
+<span class="s2">        OR icd.icd9_numeric = 534.9))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND icd.icd9_numeric = 12.71))</span>
+<span class="s2">        AND drg.gi_hemorrhage_ulcer = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS peptic_ulcer,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric BETWEEN 42 AND 44.9        </span>
+<span class="s2">        AND drg.hiv = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS aids,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 200 AND 202.38 </span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 202.5 AND 203.01</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 203.8 AND 203.81</span>
+<span class="s2">        OR icd.icd9_numeric = 238.6</span>
+<span class="s2">        OR icd.icd9_numeric = 273.3))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND (icd.icd9_numeric = 10.71</span>
+<span class="s2">        OR icd.icd9_numeric = 10.72</span>
+<span class="s2">        OR icd.icd9_numeric = 10.79)))</span>
+<span class="s2">        AND drg.leukemia_lymphoma = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS lymphoma,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric BETWEEN 196 AND 199.1        </span>
+<span class="s2">        AND drg.cancer = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS metastatic_cancer,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 140 AND 172.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 174 AND 175.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 179 AND 195.8))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND icd.icd9_numeric BETWEEN 10 AND 10.9))</span>
+<span class="s2">        AND drg.cancer = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS solid_tumor,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 701</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 710 AND 710.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 714 AND 714.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 720 AND 720.9</span>
+<span class="s2">        OR icd.icd9_numeric = 725)</span>
+<span class="s2">        AND drg.connective_tissue = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS rheumatoid_arthritis,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 2860 AND 2869</span>
+<span class="s2">        OR icd.icd9_numeric = 287.1</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 287.3 AND 287.5)</span>
+<span class="s2">        AND drg.coagulation = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS coagulopathy,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric = 278        </span>
+<span class="s2">        AND (drg.obesity_procedure = 0 AND drg.nutrition_metabolic = 0)</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS obesity,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric BETWEEN 260 AND 263.9        </span>
+<span class="s2">        AND drg.nutrition_metabolic = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS weight_loss,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric BETWEEN 276 AND 276.9        </span>
+<span class="s2">        AND drg.nutrition_metabolic = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS fluid_electrolyte,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND icd.icd9_numeric = 2800        </span>
+<span class="s2">        AND drg.anemia = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS blood_loss_anemia,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 280.1 AND 281.9</span>
+<span class="s2">        OR icd.icd9_numeric = 285.9)</span>
+<span class="s2">        AND drg.anemia = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS deficiency_anemias,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN ((icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 291.1</span>
+<span class="s2">        OR icd.icd9_numeric = 291.2</span>
+<span class="s2">        OR icd.icd9_numeric = 291.5</span>
+<span class="s2">        OR icd.icd9_numeric = 291.8</span>
+<span class="s2">        OR icd.icd9_numeric = 291.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 303.9 AND 303.93</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 305 AND 305.03))</span>
+<span class="s2">        OR (icd.icd9_alpha = 'V'</span>
+<span class="s2">        AND icd.icd9_numeric = 113))</span>
+<span class="s2">        AND drg.alcohol_drug = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS alcohol_abuse,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 292</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 292.82 AND 292.89</span>
+<span class="s2">        OR icd.icd9_numeric = 292.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 304 AND 304.93</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 305.2 AND 305.93)</span>
+<span class="s2">        AND drg.alcohol_drug = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS drug_abuse,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric BETWEEN 295 AND 298.9</span>
+<span class="s2">        OR icd.icd9_numeric BETWEEN 299.1 AND 299.11)</span>
+<span class="s2">        AND drg.psychoses = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS psychoses,</span>
+<span class="s2">      MAX(</span>
+<span class="s2">      CASE</span>
+<span class="s2">        WHEN icd.icd9_alpha IS NULL</span>
+<span class="s2">        AND (icd.icd9_numeric = 300.4</span>
+<span class="s2">        OR icd.icd9_numeric = 301.12</span>
+<span class="s2">        OR icd.icd9_numeric = 309</span>
+<span class="s2">        OR icd.icd9_numeric = 309.1</span>
+<span class="s2">        OR icd.icd9_numeric = 311)</span>
+<span class="s2">        AND drg.depression = 0</span>
+<span class="s2">        THEN 1</span>
+<span class="s2">        ELSE 0</span>
+<span class="s2">      END</span>
+<span class="s2">      ) AS depression</span>
+<span class="s2">    FROM icd9list icd, drg_category drg</span>
+<span class="s2">    WHERE icd.hadm_id = drg.hadm_id</span>
+<span class="s2">    GROUP BY icd.subject_id, icd.hadm_id</span>
+<span class="s2">    )</span>
+<span class="s2">SELECT </span>
+<span class="s2">  SUBJECT_ID,</span>
+<span class="s2">  HADM_ID,</span>
+<span class="s2">  'ELIXHAUSER',</span>
+<span class="s2">  CONGESTIVE_HEART_FAILURE,</span>
+<span class="s2">  CARDIAC_ARRHYTHMIAS,</span>
+<span class="s2">  VALVULAR_DISEASE,</span>
+<span class="s2">  PULMONARY_CIRCULATION,</span>
+<span class="s2">  PERIPHERAL_VASCULAR,</span>
+<span class="s2">  HYPERTENSION,</span>
+<span class="s2">  PARALYSIS,</span>
+<span class="s2">  OTHER_NEUROLOGICAL,</span>
+<span class="s2">  CHRONIC_PULMONARY,</span>
+<span class="s2">  DIABETES_UNCOMPLICATED,</span>
+<span class="s2">  DIABETES_COMPLICATED,</span>
+<span class="s2">  HYPOTHYROIDISM,</span>
+<span class="s2">  RENAL_FAILURE,</span>
+<span class="s2">  LIVER_DISEASE,</span>
+<span class="s2">  PEPTIC_ULCER,</span>
+<span class="s2">  AIDS,</span>
+<span class="s2">  LYMPHOMA,</span>
+<span class="s2">  METASTATIC_CANCER,</span>
+<span class="s2">  SOLID_TUMOR,</span>
+<span class="s2">  RHEUMATOID_ARTHRITIS,</span>
+<span class="s2">  COAGULOPATHY,</span>
+<span class="s2">  OBESITY,</span>
+<span class="s2">  WEIGHT_LOSS,</span>
+<span class="s2">  FLUID_ELECTROLYTE,</span>
+<span class="s2">  BLOOD_LOSS_ANEMIA,</span>
+<span class="s2">  DEFICIENCY_ANEMIAS,</span>
+<span class="s2">  ALCOHOL_ABUSE,</span>
+<span class="s2">  DRUG_ABUSE,</span>
+<span class="s2">  PSYCHOSES,</span>
+<span class="s2">  DEPRESSION</span>
+<span class="s2">FROM elixhauser ;"""</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lets create a column for the total number of elixhauser points and merge it onto our data</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [144]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">elixhauser</span><span class="p">[</span><span class="s1">'total_elix'</span><span class="p">]</span> <span class="o">=</span> <span class="n">elixhauser</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'subject_id'</span><span class="p">,</span> <span class="s1">'?column?'</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">elixhauser</span> <span class="o">=</span> <span class="n">elixhauser</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">'subject_id'</span><span class="p">,</span> <span class="s1">'hadm_id'</span><span class="p">])</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">elixhauser</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'subject_id'</span><span class="p">,</span> <span class="s1">'hadm_id'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Demographic-Information">Demographic Information<a class="anchor-link" href="#Demographic-Information">¶</a></h3><p>Lets also pull in some demograpic information for our patients</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [160]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">demo_info</span> <span class="o">=</span> <span class="n">psql</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">"""</span>
+<span class="s2">    select subject_id, hadm_id, marital_status_descr,</span>
+<span class="s2">        case</span>
+<span class="s2">            when ethnicity_descr like '%WHITE%' then 'WHITE'</span>
+<span class="s2">            when ethnicity_descr like '%BLACK%' then 'BLACK'</span>
+<span class="s2">            when ethnicity_descr like '%HISPANIC%' then 'HISPANIC'</span>
+<span class="s2">            when ethnicity_descr like '%ASIAN%' then 'ASIAN'</span>
+<span class="s2">            else 'OTHER' end as ethnicity,</span>
+<span class="s2">        admission_type_descr</span>
+<span class="s2">    from mimic2v26.demographic_detail;"""</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
+<span class="n">demo_info</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[160]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>subject_id</th>
+<th>hadm_id</th>
+<th>marital_status_descr</th>
+<th>ethnicity</th>
+<th>admission_type_descr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> 26</td>
+<td> 15067</td>
+<td>    SINGLE</td>
+<td> OTHER</td>
+<td> EMERGENCY</td>
+</tr>
+<tr>
+<th>1</th>
+<td> 37</td>
+<td> 18052</td>
+<td>   MARRIED</td>
+<td> WHITE</td>
+<td> EMERGENCY</td>
+</tr>
+<tr>
+<th>2</th>
+<td> 78</td>
+<td> 15161</td>
+<td> SEPARATED</td>
+<td> BLACK</td>
+<td> EMERGENCY</td>
+</tr>
+<tr>
+<th>3</th>
+<td> 67</td>
+<td> 35878</td>
+<td>    SINGLE</td>
+<td> WHITE</td>
+<td> EMERGENCY</td>
+</tr>
+<tr>
+<th>4</th>
+<td> 56</td>
+<td> 28766</td>
+<td>      None</td>
+<td> WHITE</td>
+<td> EMERGENCY</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And merge it onto our data</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [226]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data_2v2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">demo_info</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">'left'</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">'subject_id'</span><span class="p">,</span> <span class="s1">'hadm_id'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Logisitc-Regression-Year-Survival-Rate">Logisitc Regression Year Survival Rate<a class="anchor-link" href="#Logisitc-Regression-Year-Survival-Rate">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have some data together, we can do a quick logistic regression to try and classify whether a person will die before a year after admission.</p>
+<p>We first need to create some dummy variables</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [212]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data_2v2</span> <span class="o">=</span> <span class="n">data_2v2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">dummy_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'icustay_first_careunit'</span><span class="p">,</span> <span class="s1">'gender'</span><span class="p">,</span> <span class="s1">'marital_status_descr'</span><span class="p">,</span> <span class="s1">'ethnicity'</span><span class="p">,</span> <span class="s1">'admission_type_descr'</span><span class="p">]</span>
+<span class="n">dummy_frames</span> <span class="o">=</span> <span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">data_2v2</span><span class="p">[</span><span class="n">x</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dummy_list</span><span class="p">]</span>
+<span class="n">dummy_frames</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dummy_frames</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [216]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">data_2v2</span><span class="p">[</span><span class="s1">'year_die'</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">data_2v2</span><span class="o">.</span><span class="n">survival_days</span> <span class="o"><</span> <span class="mi">365</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">data3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">data_2v2</span><span class="p">,</span> <span class="n">dummy_frames</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">data3</span><span class="p">[</span><span class="s1">'intercept'</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1">#note: FICU is the same as MICU, so combining</span>
+<span class="n">data3</span><span class="p">[</span><span class="s1">'MICU'</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">data3</span><span class="o">.</span><span class="n">FICU</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">data3</span><span class="o">.</span><span class="n">MICU</span><span class="p">)</span>
+<span class="n">train_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'intercept'</span><span class="p">,</span><span class="s1">'icustay_admit_age'</span><span class="p">,</span> <span class="s1">'weight_max'</span><span class="p">,</span><span class="s1">'M'</span><span class="p">,</span> <span class="s1">'CSRU'</span><span class="p">,</span> <span class="s1">'MICU'</span><span class="p">,</span> <span class="s1">'SICU'</span><span class="p">,</span>
+              <span class="s1">'sapsi_max'</span><span class="p">,</span> <span class="s1">'sapsi_min'</span><span class="p">,</span> <span class="s1">'total_elix'</span><span class="p">,</span> <span class="s1">'DIVORCED'</span><span class="p">,</span> <span class="s1">'MARRIED'</span><span class="p">,</span> <span class="s1">'SEPARATED'</span><span class="p">,</span> <span class="s1">'WIDOWED'</span><span class="p">,</span>
+              <span class="s1">'ASIAN'</span><span class="p">,</span> <span class="s1">'BLACK'</span><span class="p">,</span> <span class="s1">'HISPANIC'</span><span class="p">,</span> <span class="s1">'EMERGENCY'</span><span class="p">,</span> <span class="s1">'URGENT'</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use statsmodels to do the estimation becuase we get P values.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [217]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">logit</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">data3</span><span class="o">.</span><span class="n">year_die</span><span class="p">,</span> <span class="n">data3</span><span class="p">[</span><span class="n">train_cols</span><span class="p">])</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">logit</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Optimization terminated successfully.
+         Current function value: 0.533862
+         Iterations 7
+</pre>
+</div>
+</div>
+<div class="output_area"><div class="prompt output_prompt">Out[217]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<table class="simpletable">
+<caption>Logit Regression Results</caption>
+<tr>
+<th>Dep. Variable:</th> <td>year_die</td> <th>  No. Observations:  </th> <td>  2208</td>
+</tr>
+<tr>
+<th>Model:</th> <td>Logit</td> <th>  Df Residuals:      </th> <td>  2189</td>
+</tr>
+<tr>
+<th>Method:</th> <td>MLE</td> <th>  Df Model:          </th> <td>    18</td>
+</tr>
+<tr>
+<th>Date:</th> <td>Fri, 02 Jan 2015</td> <th>  Pseudo R-squ.:     </th> <td>0.1225</td>
+</tr>
+<tr>
+<th>Time:</th> <td>21:22:35</td> <th>  Log-Likelihood:    </th> <td> -1178.8</td>
+</tr>
+<tr>
+<th>converged:</th> <td>True</td> <th>  LL-Null:           </th> <td> -1343.3</td>
+</tr>
+<tr>
+<th> </th> <td> </td> <th>  LLR p-value:       </th> <td>4.799e-59</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+<td></td> <th>coef</th> <th>std err</th> <th>z</th> <th>P>|z|</th> <th>[95.0% Conf. Int.]</th>
+</tr>
+<tr>
+<th>intercept</th> <td>   -2.0407</td> <td>    0.431</td> <td>   -4.731</td> <td> 0.000</td> <td>   -2.886    -1.195</td>
+</tr>
+<tr>
+<th>icustay_admit_age</th> <td>   -0.0066</td> <td>    0.004</td> <td>   -1.605</td> <td> 0.109</td> <td>   -0.015     0.001</td>
+</tr>
+<tr>
+<th>weight_max</th> <td>   -0.0038</td> <td>    0.002</td> <td>   -1.727</td> <td> 0.084</td> <td>   -0.008     0.001</td>
+</tr>
+<tr>
+<th>M</th> <td>   -0.0920</td> <td>    0.111</td> <td>   -0.832</td> <td> 0.406</td> <td>   -0.309     0.125</td>
+</tr>
+<tr>
+<th>CSRU</th> <td>   -0.1025</td> <td>    0.141</td> <td>   -0.726</td> <td> 0.468</td> <td>   -0.379     0.174</td>
+</tr>
+<tr>
+<th>MICU</th> <td>    0.4103</td> <td>    0.130</td> <td>    3.162</td> <td> 0.002</td> <td>    0.156     0.665</td>
+</tr>
+<tr>
+<th>SICU</th> <td>    1.3303</td> <td>    0.462</td> <td>    2.878</td> <td> 0.004</td> <td>    0.424     2.236</td>
+</tr>
+<tr>
+<th>sapsi_max</th> <td>    0.0786</td> <td>    0.012</td> <td>    6.759</td> <td> 0.000</td> <td>    0.056     0.101</td>
+</tr>
+<tr>
+<th>sapsi_min</th> <td>    0.1032</td> <td>    0.016</td> <td>    6.533</td> <td> 0.000</td> <td>    0.072     0.134</td>
+</tr>
+<tr>
+<th>total_elix</th> <td> 4.213e-07</td> <td> 7.14e-08</td> <td>    5.903</td> <td> 0.000</td> <td> 2.81e-07  5.61e-07</td>
+</tr>
+<tr>
+<th>DIVORCED</th> <td>   -0.0580</td> <td>    0.236</td> <td>   -0.245</td> <td> 0.806</td> <td>   -0.521     0.405</td>
+</tr>
+<tr>
+<th>MARRIED</th> <td>    0.0081</td> <td>    0.141</td> <td>    0.057</td> <td> 0.954</td> <td>   -0.269     0.285</td>
+</tr>
+<tr>
+<th>SEPARATED</th> <td>    0.4553</td> <td>    0.592</td> <td>    0.770</td> <td> 0.442</td> <td>   -0.704     1.615</td>
+</tr>
+<tr>
+<th>WIDOWED</th> <td>   -0.2520</td> <td>    0.172</td> <td>   -1.467</td> <td> 0.143</td> <td>   -0.589     0.085</td>
+</tr>
+<tr>
+<th>ASIAN</th> <td>    0.5206</td> <td>    0.503</td> <td>    1.034</td> <td> 0.301</td> <td>   -0.466     1.507</td>
+</tr>
+<tr>
+<th>BLACK</th> <td>   -0.2541</td> <td>    0.229</td> <td>   -1.112</td> <td> 0.266</td> <td>   -0.702     0.194</td>
+</tr>
+<tr>
+<th>HISPANIC</th> <td>   -0.4725</td> <td>    0.404</td> <td>   -1.168</td> <td> 0.243</td> <td>   -1.265     0.320</td>
+</tr>
+<tr>
+<th>EMERGENCY</th> <td>    0.7361</td> <td>    0.164</td> <td>    4.490</td> <td> 0.000</td> <td>    0.415     1.057</td>
+</tr>
+<tr>
+<th>URGENT</th> <td>   -0.0675</td> <td>    0.266</td> <td>   -0.254</td> <td> 0.800</td> <td>   -0.589     0.454</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lets take a look at the SICU, year_die table. You can see that 91% of people in the SICU die before a year as opposed to 70% not in the SICU. Thus, it makes sense that it has a large, significant coefficient.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [228]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span class="n">sicu</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">crosstab</span><span class="p">(</span><span class="n">data3</span><span class="o">.</span><span class="n">SICU</span><span class="p">,</span> <span class="n">data3</span><span class="o">.</span><span class="n">year_die</span><span class="p">)</span>
+<span class="n">sicu_pct</span> <span class="o">=</span> <span class="n">sicu</span><span class="o">.</span><span class="n">div</span><span class="p">(</span><span class="n">sicu</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sicu_pct</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[228]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th>year_die</th>
+<th>0</th>
+<th>1</th>
+</tr>
+<tr>
+<th>SICU</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td> 0.303172</td>
+<td> 0.696828</td>
+</tr>
+<tr>
+<th>1</th>
+<td> 0.093750</td>
+<td> 0.906250</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Additional-Resoureces">Additional Resoureces<a class="anchor-link" href="#Additional-Resoureces">¶</a></h1><p>Here are some additional links to help you better understand the MIMIC data</p>
+<ul>
+<li><a href="https://mimic.physionet.org/database/faqs.html#24">FAQ</a></li>
+<li><a href="https://mimic.physionet.org/UserGuide/UserGuide.html">User Guide</a></li>
+</ul>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+  </div>
+  <div class="tag-cloud">
+    <p>
+      <a href="http://localhost:8000/tag/health.html">health</a>
+    </p>
+  </div>
+
+
+
+
+</article>
+
+    <footer>
+<p>&copy; Tyler Folkman </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Learning With Data ",
+  "url" : "http://localhost:8000",
+  "image": "/images/profile.jpg",
+  "description": ""
+}
+</script>
+</body>
+</html>
