@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://localhost:8000/" rel="alternate"></link><link href="http://localhost:8000/feeds/ml.atom.xml" rel="self"></link><id>http://localhost:8000/</id><updated>2015-10-17T00:00:00-07:00</updated><entry><title>Bayes Primer</title><link href="http://localhost:8000/bayes-primer.html" rel="alternate"></link><published>2015-10-17T00:00:00-07:00</published><updated>2015-10-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-10-17:bayes-primer.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://learningwithdata.com/" rel="alternate"></link><link href="http://learningwithdata.com/feeds/ml.atom.xml" rel="self"></link><id>http://learningwithdata.com/</id><updated>2015-10-17T00:00:00-07:00</updated><entry><title>Bayes Primer</title><link href="http://learningwithdata.com/bayes-primer.html" rel="alternate"></link><published>2015-10-17T00:00:00-07:00</published><updated>2015-10-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-10-17:bayes-primer.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -2012,7 +2012,7 @@ BRwRERFpOwo4IiIi0nb+P71Mo44icH1fAAAAAElFTkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="tutorial"></category><category term="bayesian"></category></entry><entry><title>Logistic Regression and Optimization</title><link href="http://localhost:8000/logistic-regression-and-optimization.html" rel="alternate"></link><published>2015-04-29T00:00:00-07:00</published><updated>2015-04-29T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-04-29:logistic-regression-and-optimization.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="tutorial"></category><category term="bayesian"></category></entry><entry><title>Logistic Regression and Optimization</title><link href="http://learningwithdata.com/logistic-regression-and-optimization.html" rel="alternate"></link><published>2015-04-29T00:00:00-07:00</published><updated>2015-04-29T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-04-29:logistic-regression-and-optimization.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -3315,7 +3315,7 @@ ERERl/u/PUl8JICi+8EAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="tutorial"></category><category term="logistic-regression"></category></entry><entry><title>Bayes With Continuous Prior</title><link href="http://localhost:8000/bayes-with-continuous-prior.html" rel="alternate"></link><published>2015-04-03T00:00:00-07:00</published><updated>2015-04-03T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-04-03:bayes-with-continuous-prior.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="tutorial"></category><category term="logistic-regression"></category></entry><entry><title>Bayes With Continuous Prior</title><link href="http://learningwithdata.com/bayes-with-continuous-prior.html" rel="alternate"></link><published>2015-04-03T00:00:00-07:00</published><updated>2015-04-03T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-04-03:bayes-with-continuous-prior.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

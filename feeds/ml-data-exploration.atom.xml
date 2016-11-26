@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://localhost:8000/" rel="alternate"></link><link href="http://localhost:8000/feeds/ml-data-exploration.atom.xml" rel="self"></link><id>http://localhost:8000/</id><updated>2015-09-22T00:00:00-07:00</updated><entry><title>MIMIC Data</title><link href="http://localhost:8000/mimic-data.html" rel="alternate"></link><published>2015-09-22T00:00:00-07:00</published><updated>2015-09-22T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-09-22:mimic-data.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://learningwithdata.com/" rel="alternate"></link><link href="http://learningwithdata.com/feeds/ml-data-exploration.atom.xml" rel="self"></link><id>http://learningwithdata.com/</id><updated>2015-09-22T00:00:00-07:00</updated><entry><title>MIMIC Data</title><link href="http://learningwithdata.com/mimic-data.html" rel="alternate"></link><published>2015-09-22T00:00:00-07:00</published><updated>2015-09-22T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-09-22:mimic-data.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -2403,7 +2403,7 @@ Name: weight_max, dtype: float64&lt;/pre&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="health"></category></entry><entry><title>Python For Data Mining</title><link href="http://localhost:8000/python-for-data-mining.html" rel="alternate"></link><published>2015-01-17T00:00:00-07:00</published><updated>2015-01-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-01-17:python-for-data-mining.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="health"></category></entry><entry><title>Python For Data Mining</title><link href="http://learningwithdata.com/python-for-data-mining.html" rel="alternate"></link><published>2015-01-17T00:00:00-07:00</published><updated>2015-01-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-01-17:python-for-data-mining.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://localhost:8000/" rel="alternate"></link><link href="http://localhost:8000/feeds/all.atom.xml" rel="self"></link><id>http://localhost:8000/</id><updated>2016-03-14T00:00:00-07:00</updated><entry><title>High School Offensive Tackles</title><link href="http://localhost:8000/high-school-offensive-tackles.html" rel="alternate"></link><published>2016-03-14T00:00:00-07:00</published><updated>2016-03-14T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2016-03-14:high-school-offensive-tackles.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://learningwithdata.com/" rel="alternate"></link><link href="http://learningwithdata.com/feeds/all.atom.xml" rel="self"></link><id>http://learningwithdata.com/</id><updated>2016-03-14T00:00:00-07:00</updated><entry><title>High School Offensive Tackles</title><link href="http://learningwithdata.com/high-school-offensive-tackles.html" rel="alternate"></link><published>2016-03-14T00:00:00-07:00</published><updated>2016-03-14T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2016-03-14:high-school-offensive-tackles.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1325,7 +1325,7 @@ F2CiDAAAAABJRU5ErkJggg==
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="nfl"></category></entry><entry><title>Bayes Primer</title><link href="http://localhost:8000/bayes-primer.html" rel="alternate"></link><published>2015-10-17T00:00:00-07:00</published><updated>2015-10-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-10-17:bayes-primer.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="nfl"></category></entry><entry><title>Bayes Primer</title><link href="http://learningwithdata.com/bayes-primer.html" rel="alternate"></link><published>2015-10-17T00:00:00-07:00</published><updated>2015-10-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-10-17:bayes-primer.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -3338,7 +3338,7 @@ BRwRERFpOwo4IiIi0nb+P71Mo44icH1fAAAAAElFTkSuQmCC
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="tutorial"></category><category term="bayesian"></category></entry><entry><title>Predicting Fantasy Football Points</title><link href="http://localhost:8000/predicting-fantasy-football-points.html" rel="alternate"></link><published>2015-10-07T00:00:00-07:00</published><updated>2015-10-07T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-10-07:predicting-fantasy-football-points.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="tutorial"></category><category term="bayesian"></category></entry><entry><title>Predicting Fantasy Football Points</title><link href="http://learningwithdata.com/predicting-fantasy-football-points.html" rel="alternate"></link><published>2015-10-07T00:00:00-07:00</published><updated>2015-10-07T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-10-07:predicting-fantasy-football-points.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -5248,7 +5248,7 @@ MaPgFxGJmf8Pc7z+BY5/TtYAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="nfl"></category></entry><entry><title>Fantasy Football</title><link href="http://localhost:8000/fantasy-football.html" rel="alternate"></link><published>2015-09-30T00:00:00-07:00</published><updated>2015-09-30T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-09-30:fantasy-football.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="nfl"></category></entry><entry><title>Fantasy Football</title><link href="http://learningwithdata.com/fantasy-football.html" rel="alternate"></link><published>2015-09-30T00:00:00-07:00</published><updated>2015-09-30T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-09-30:fantasy-football.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -6816,7 +6816,7 @@ EckRJX0RkRxR0hcRyRElfRGRHPk/ZUuygyS44QMAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="nfl"></category></entry><entry><title>MIMIC Data</title><link href="http://localhost:8000/mimic-data.html" rel="alternate"></link><published>2015-09-22T00:00:00-07:00</published><updated>2015-09-22T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-09-22:mimic-data.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="nfl"></category></entry><entry><title>MIMIC Data</title><link href="http://learningwithdata.com/mimic-data.html" rel="alternate"></link><published>2015-09-22T00:00:00-07:00</published><updated>2015-09-22T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-09-22:mimic-data.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -9220,7 +9220,7 @@ Name: weight_max, dtype: float64&lt;/pre&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="health"></category></entry><entry><title>Spark DataFrames</title><link href="http://localhost:8000/spark-dataframes.html" rel="alternate"></link><published>2015-08-01T00:00:00-07:00</published><updated>2015-08-01T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-08-01:spark-dataframes.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="health"></category></entry><entry><title>Spark DataFrames</title><link href="http://learningwithdata.com/spark-dataframes.html" rel="alternate"></link><published>2015-08-01T00:00:00-07:00</published><updated>2015-08-01T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-08-01:spark-dataframes.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -10660,7 +10660,7 @@ YII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="spark"></category></entry><entry><title>Talk Pay</title><link href="http://localhost:8000/talk-pay.html" rel="alternate"></link><published>2015-05-01T00:00:00-07:00</published><updated>2015-05-01T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-05-01:talk-pay.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="spark"></category></entry><entry><title>Talk Pay</title><link href="http://learningwithdata.com/talk-pay.html" rel="alternate"></link><published>2015-05-01T00:00:00-07:00</published><updated>2015-05-01T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-05-01:talk-pay.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -11055,7 +11055,7 @@ dtype: float64&lt;/pre&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="twitter"></category></entry><entry><title>Logistic Regression and Optimization</title><link href="http://localhost:8000/logistic-regression-and-optimization.html" rel="alternate"></link><published>2015-04-29T00:00:00-07:00</published><updated>2015-04-29T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-04-29:logistic-regression-and-optimization.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="twitter"></category></entry><entry><title>Logistic Regression and Optimization</title><link href="http://learningwithdata.com/logistic-regression-and-optimization.html" rel="alternate"></link><published>2015-04-29T00:00:00-07:00</published><updated>2015-04-29T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-04-29:logistic-regression-and-optimization.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -12358,7 +12358,7 @@ ERERl/u/PUl8JICi+8EAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="tutorial"></category><category term="logistic-regression"></category></entry><entry><title>Bayes With Continuous Prior</title><link href="http://localhost:8000/bayes-with-continuous-prior.html" rel="alternate"></link><published>2015-04-03T00:00:00-07:00</published><updated>2015-04-03T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-04-03:bayes-with-continuous-prior.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="tutorial"></category><category term="logistic-regression"></category></entry><entry><title>Bayes With Continuous Prior</title><link href="http://learningwithdata.com/bayes-with-continuous-prior.html" rel="alternate"></link><published>2015-04-03T00:00:00-07:00</published><updated>2015-04-03T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-04-03:bayes-with-continuous-prior.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -14094,7 +14094,7 @@ $$\frac{y + \alpha_{prior}}{y + \alpha_{prior} + n - y + \beta_{prior}}$$
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="bayesian"></category><category term="tutorial"></category></entry><entry><title>Python For Data Mining</title><link href="http://localhost:8000/python-for-data-mining.html" rel="alternate"></link><published>2015-01-17T00:00:00-07:00</published><updated>2015-01-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-01-17:python-for-data-mining.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="bayesian"></category><category term="tutorial"></category></entry><entry><title>Python For Data Mining</title><link href="http://learningwithdata.com/python-for-data-mining.html" rel="alternate"></link><published>2015-01-17T00:00:00-07:00</published><updated>2015-01-17T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-01-17:python-for-data-mining.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://localhost:8000/" rel="alternate"></link><link href="http://localhost:8000/feeds/data-exploration.atom.xml" rel="self"></link><id>http://localhost:8000/</id><updated>2016-03-14T00:00:00-07:00</updated><entry><title>High School Offensive Tackles</title><link href="http://localhost:8000/high-school-offensive-tackles.html" rel="alternate"></link><published>2016-03-14T00:00:00-07:00</published><updated>2016-03-14T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2016-03-14:high-school-offensive-tackles.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Learning With Data</title><link href="http://learningwithdata.com/" rel="alternate"></link><link href="http://learningwithdata.com/feeds/data-exploration.atom.xml" rel="self"></link><id>http://learningwithdata.com/</id><updated>2016-03-14T00:00:00-07:00</updated><entry><title>High School Offensive Tackles</title><link href="http://learningwithdata.com/high-school-offensive-tackles.html" rel="alternate"></link><published>2016-03-14T00:00:00-07:00</published><updated>2016-03-14T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2016-03-14:high-school-offensive-tackles.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1325,7 +1325,7 @@ F2CiDAAAAABJRU5ErkJggg==
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="nfl"></category></entry><entry><title>Fantasy Football</title><link href="http://localhost:8000/fantasy-football.html" rel="alternate"></link><published>2015-09-30T00:00:00-07:00</published><updated>2015-09-30T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-09-30:fantasy-football.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="nfl"></category></entry><entry><title>Fantasy Football</title><link href="http://learningwithdata.com/fantasy-football.html" rel="alternate"></link><published>2015-09-30T00:00:00-07:00</published><updated>2015-09-30T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-09-30:fantasy-football.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -2893,7 +2893,7 @@ EckRJX0RkRxR0hcRyRElfRGRHPk/ZUuygyS44QMAAAAASUVORK5CYII=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</summary><category term="nfl"></category></entry><entry><title>Talk Pay</title><link href="http://localhost:8000/talk-pay.html" rel="alternate"></link><published>2015-05-01T00:00:00-07:00</published><updated>2015-05-01T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:localhost:8000,2015-05-01:talk-pay.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
+</summary><category term="nfl"></category></entry><entry><title>Talk Pay</title><link href="http://learningwithdata.com/talk-pay.html" rel="alternate"></link><published>2015-05-01T00:00:00-07:00</published><updated>2015-05-01T00:00:00-07:00</updated><author><name>Tyler Folkman</name></author><id>tag:learningwithdata.com,2015-05-01:talk-pay.html</id><summary type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
